@@ -66,7 +66,7 @@ Now access on your browser: http://localhost:300
 
 ## License
 
-This project is under the MIT license. See the [LICENSE](https://github.com/rafacdomin/gobarber-web/blob/master/LICENSE) for more information.
+This project is under the MIT license. See the [LICENSE](https://github.com/rafacdomin/proffy/blob/master/LICENSE) for more information.
 
 ---
 
