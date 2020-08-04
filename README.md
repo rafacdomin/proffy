@@ -55,7 +55,7 @@ To run the frontend web:
 # Go into the web folder
 $ cd web
 
-# Instal dependencies
+# Install dependencies
 $ yarn
 
 # Run the app
