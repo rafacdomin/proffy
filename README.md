@@ -62,7 +62,7 @@ $ yarn
 $ yarn start
 ```
 
-Now access on your browser: http://localhost:300
+Now access on your browser: http://localhost:3000
 
 ## License
 
