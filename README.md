@@ -23,9 +23,13 @@
   <a href="#author">Author</a>
 </p>
 
+<p align="center">
+  <a href="https://insomnia.rest/run/?label=Proffy&uri=https%3A%2F%2Fgithub.com%2Frafacdomin%2Fproffy%2Fblob%2Fmaster%2Fapi%2FInsomnia_proffy.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
+
 ## About
 
-ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students to teachers.
+ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
 
 <img src=".github/proffy.gif" alt="Proffy Demo" width='750px'/>
 
@@ -34,6 +38,7 @@ ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com
 This project was developed with the following technologies:
 
 - API:
+
   - [NodeJS](https://nodejs.org/en/)
   - [Typescript](https://www.typescriptlang.org/)
   - [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
@@ -41,10 +46,11 @@ This project was developed with the following technologies:
   - [KnexJS](http://knexjs.org/)
   - [SQLite 3](https://www.npmjs.com/package/sqlite3)
 
-* Web:
+- Web:
   - [ReactJS](https://reactjs.org/)
   - [Typescript](https://www.typescriptlang.org/)
   - [React Router v5](https://github.com/ReactTraining/react-router)
+  - [Axios](https://github.com/axios/axios)
 
 ## How To Use
 
