@@ -19,9 +19,11 @@ export default class ClassesController {
     const time = filters.time as string;
 
     if (!filters.week_day || !filters.subject || !filters.time) {
-      return res.status(400).json({
-        error: 'Missing filters to search classes',
-      });
+      const classes = await db('classes')
+        .join('users', 'classes.user_id', '=', 'users.id')
+        .select(['classes.*', 'users.*']);
+
+      return res.json(classes);
     }
 
     const timeInMinutes = convertHourToMinutes(time);
