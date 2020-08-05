@@ -33,9 +33,18 @@ ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com
 
 This project was developed with the following technologies:
 
-- [ReactJS](https://reactjs.org/)
-- [Typescript](https://www.typescriptlang.org/)
-- [React Router v5](https://github.com/ReactTraining/react-router)
+- API:
+  - [NodeJS](https://nodejs.org/en/)
+  - [Typescript](https://www.typescriptlang.org/)
+  - [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
+  - [Express](https://expressjs.com/)
+  - [KnexJS](http://knexjs.org/)
+  - [SQLite 3](https://www.npmjs.com/package/sqlite3)
+
+* Web:
+  - [ReactJS](https://reactjs.org/)
+  - [Typescript](https://www.typescriptlang.org/)
+  - [React Router v5](https://github.com/ReactTraining/react-router)
 
 ## How To Use
 
@@ -48,6 +57,21 @@ $ git clone https://github.com/rafacdomin/proffy
 # Go into the repository
 $ cd proffy
 ```
+
+To run the API server:
+
+```bash
+# Go into the web folder
+$ cd api
+
+# Install dependencies
+$ yarn
+
+# Run the app
+$ yarn start
+```
+
+Now import the `Insomnia_proffy.json` file inside of the api folder to your Insomnia.
 
 To run the frontend web:
 

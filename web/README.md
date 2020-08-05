@@ -25,18 +25,17 @@
 
 ## About
 
-NodeJS API REST developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
+ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students to teachers.
+
+<img src="https://github.com/rafacdomin/proffy/raw/master/.github/proffy.gif" alt="Proffy Demo" width='750px'/>
 
 ## Technologies
 
 This project was developed with the following technologies:
 
-- [NodeJS](https://nodejs.org/en/)
+- [ReactJS](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
-- [Express](https://expressjs.com/)
-- [KnexJS](http://knexjs.org/)
-- [SQLite 3](https://www.npmjs.com/package/sqlite3)
+- [React Router v5](https://github.com/ReactTraining/react-router)
 
 ## How To Use
 
@@ -50,11 +49,11 @@ $ git clone https://github.com/rafacdomin/proffy
 $ cd proffy
 ```
 
-To run the API server:
+To run the frontend web:
 
 ```bash
 # Go into the web folder
-$ cd api
+$ cd web
 
 # Install dependencies
 $ yarn
@@ -63,7 +62,7 @@ $ yarn
 $ yarn start
 ```
 
-Now import the `Insomnia_proffy.json` file inside of the api folder to your Insomnia.
+Now access on your browser: http://localhost:3000
 
 ## License
 
