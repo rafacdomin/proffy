@@ -53,7 +53,7 @@ $ cd proffy
 To run the API server:
 
 ```bash
-# Go into the web folder
+# Go into the api folder
 $ cd api
 
 # Install dependencies
