@@ -47,19 +47,20 @@ This project was developed with the following technologies:
   - [SQLite 3](https://www.npmjs.com/package/sqlite3)
 
 - Web:
+
   - [ReactJS](https://reactjs.org/)
   - [Typescript](https://www.typescriptlang.org/)
   - [React Router v5](https://github.com/ReactTraining/react-router)
   - [Axios](https://github.com/axios/axios)
 
--Mobile:
+- Mobile:
 
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.io/)
-- [Typescript](https://www.typescriptlang.org/)
-- [React Navigation v5](https://reactnavigation.org/)
-- [styled-components](https://styled-components.com/)
-- [Axios](https://github.com/axios/axios)
+  - [React Native](https://reactnative.dev/)
+  - [Expo](https://expo.io/)
+  - [Typescript](https://www.typescriptlang.org/)
+  - [React Navigation v5](https://reactnavigation.org/)
+  - [styled-components](https://styled-components.com/)
+  - [Axios](https://github.com/axios/axios)
 
 ## How To Use
 
