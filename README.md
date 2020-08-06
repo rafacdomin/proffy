@@ -31,7 +31,7 @@
 
 ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
 
-<img src=".github/proffy.gif" alt="Proffy Demo" width="500"/> <img src="https://github.com/rafacdomin/proffy/raw/master/.github/mobile.png" alt="Proffy Demo" height="250"/>
+<img src=".github/proffy.gif" alt="Proffy Demo" width="600"/> <img src=".github/mobile.png" alt="Proffy Demo" height="250"/>
 
 ## Technologies
 
