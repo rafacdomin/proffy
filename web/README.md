@@ -25,7 +25,7 @@
 
 ## About
 
-ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students to teachers.
+ReactJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
 
 <img src="https://github.com/rafacdomin/proffy/raw/master/.github/proffy.gif" alt="Proffy Demo"/>
 

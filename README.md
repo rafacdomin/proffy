@@ -52,6 +52,15 @@ This project was developed with the following technologies:
   - [React Router v5](https://github.com/ReactTraining/react-router)
   - [Axios](https://github.com/axios/axios)
 
+-Mobile:
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
+- [Typescript](https://www.typescriptlang.org/)
+- [React Navigation v5](https://reactnavigation.org/)
+- [styled-components](https://styled-components.com/)
+- [Axios](https://github.com/axios/axios)
+
 ## How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/) + [Yarn v1](https://classic.yarnpkg.com/) installed on your computer. From your command line:
@@ -93,6 +102,21 @@ $ yarn start
 ```
 
 Now access on your browser: http://localhost:3000
+
+To run the mobile app:
+
+```bash
+# Go into the mobile folder
+$ cd mobile
+
+# Install dependencies
+$ yarn
+
+# Run the app
+$ yarn start
+```
+
+Now your browser should open, and you just need to scan the QR Code to your phone.
 
 ## License
 
