@@ -64,7 +64,7 @@ This project was developed with the following technologies:
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/), [Yarn v1](https://classic.yarnpkg.com/) and [Expo](https://expo.io/) installed on your computer. installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/), [Yarn v1](https://classic.yarnpkg.com/) and [Expo](https://expo.io/) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
