@@ -28,7 +28,7 @@
 React Native project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
 
 <p align='center'>
-  <img src="https://github.com/rafacdomin/proffy/raw/master/.github/mobile.gif" alt="Proffy Demo" width="200"/>
+  <img src="https://github.com/rafacdomin/proffy/raw/master/.github/mobile.png" alt="Proffy Demo" width="200"/>
 </p>
 
 ## Technologies

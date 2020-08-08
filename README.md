@@ -31,7 +31,7 @@
 
 React Native + ReactJS + NodeJS project developed on [RocketSeat NexLevelWeek](https://nextlevelweek.com/). This project is based on an application for connect students and teachers.
 
-<img src=".github/proffy.gif" alt="Proffy Demo" width="600"/> <img src="https://github.com/rafacdomin/proffy/raw/master/.github/mobile.gif" alt="Proffy Demo" height="320"/>
+<img src=".github/proffy.gif" alt="Proffy Demo" width="600"/> <img src="https://github.com/rafacdomin/proffy/raw/master/.github/mobile.png" alt="Proffy Demo" height="320"/>
 
 ## Technologies
 
