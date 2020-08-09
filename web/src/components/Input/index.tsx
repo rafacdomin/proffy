@@ -1,15 +1,28 @@
-import React, { InputHTMLAttributes, useRef, useEffect } from 'react';
+import React, { InputHTMLAttributes, useRef, useEffect, useState } from 'react';
 import { useField } from '@unform/core';
 
 import './styles.css';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+import showPassIcon from '../../assets/images/icons/showPass.svg';
+import hidePassIcon from '../../assets/images/icons/hidePass.svg';
+
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   name: string;
+  type?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
-  const inputRef = useRef(null);
+type InputProps = JSX.IntrinsicElements['input'] & Props;
+
+const Input: React.FC<InputProps> = ({
+  label,
+  name,
+  type = 'text',
+  ...rest
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [hidden, setHidden] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -21,16 +34,47 @@ const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
     });
   }, [fieldName, registerField]);
 
+  function handleShowPass() {
+    setHidden(!hidden);
+  }
+
+  function handleTextChange() {
+    const text = inputRef.current?.value;
+
+    if (text !== '') {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }
+
   return (
     <div className="input-block">
-      {label && <label htmlFor={fieldName}>{label}</label>}
+      {label && (
+        <label className={isActive ? 'Active' : ''} htmlFor={fieldName}>
+          {label}
+        </label>
+      )}
 
-      <input
-        id={fieldName}
-        ref={inputRef}
-        defaultValue={defaultValue}
-        {...rest}
-      />
+      <div className="input">
+        <input
+          onChange={handleTextChange}
+          type={type === 'password' ? (hidden ? 'password' : 'text') : type}
+          id={fieldName}
+          ref={inputRef}
+          defaultValue={defaultValue}
+          {...rest}
+        />
+
+        {name === 'password' && (
+          <button type="button" onClick={handleShowPass}>
+            <img
+              src={hidden ? showPassIcon : hidePassIcon}
+              alt="Mostrar senha"
+            />
+          </button>
+        )}
+      </div>
 
       {error && <span className="error">{error}</span>}
     </div>

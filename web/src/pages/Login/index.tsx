@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 import Input from '../../components/Input';
 import Checkbox from './components/Checkbox';
@@ -10,10 +11,17 @@ import heartIcon from '../../assets/images/icons/heart.svg';
 
 import './styles.css';
 
+interface FormData {
+  name: string;
+  email: string;
+}
+
 export default function Login() {
-  function handleSubmit(data: string) {
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
-  }
+  };
 
   return (
     <div id="login-page">
@@ -29,7 +37,7 @@ export default function Login() {
         </div>
       </div>
       <div className="login-page-content">
-        <Form onSubmit={handleSubmit}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Fazer login</h1>
 
           <div className="inputs">

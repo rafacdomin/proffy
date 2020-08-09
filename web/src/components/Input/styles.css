@@ -5,14 +5,24 @@
 
 .input-block label {
   position: absolute;
+  pointer-events: none;
   font-size: 1.4rem;
   padding: 0 1.2rem;
   font: 1.6rem Archivo;
   color: var(--color-text-complement);
 
   transform-origin: top left;
-  transform: translate(0, 1.6rem) scale(1);
-  transition: all 0.1s ease-in-out;
+  transform: translate(0, 1.9rem) scale(1);
+
+  transition: all 0.2s ease-out;
+}
+
+.input-block .Active {
+  transform: translate(0, 12px) scale(0.75);
+}
+
+.input-block:focus-within label {
+  transform: translate(0, 12px) scale(0.75);
 }
 
 .input-block input {
@@ -21,8 +31,23 @@
   background: var(--color-input-background);
   border: 0;
   outline: 0;
-  padding: 0 1.6rem 0 1rem;
+  padding: 1.4rem 1.6rem 0 1rem;
   font: 1.6rem Archivo;
+}
+
+.input-block .input {
+  display: flex;
+}
+
+.input-block .input button {
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  cursor: pointer;
 }
 
 .input-block + .input-block {
@@ -39,8 +64,4 @@
   top: 0.8rem;
   bottom: 0.8;
   border-radius: 0.8rem;
-}
-
-.input-block:focus-within label {
-  transform: translate(0, 4px) scale(0.75);
 }
