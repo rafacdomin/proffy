@@ -16,6 +16,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
+}
+
+.logo-content .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo-content img {
@@ -35,10 +43,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .login-page-content form {
+  margin-top: 2rem;
   width: 100%;
 }
 

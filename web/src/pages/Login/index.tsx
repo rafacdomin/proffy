@@ -23,8 +23,10 @@ export default function Login() {
         }}
         className="logo-content"
       >
-        <img src={logoImg} alt="Proffy" />
-        <span>Sua plataforma de estudos online</span>
+        <div className="logo">
+          <img src={logoImg} alt="Proffy" />
+          <span>Sua plataforma de estudos online</span>
+        </div>
       </div>
       <div className="login-page-content">
         <Form onSubmit={handleSubmit}>
