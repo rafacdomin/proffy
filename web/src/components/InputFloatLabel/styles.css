@@ -12,7 +12,7 @@
   color: var(--color-text-complement);
 
   transform-origin: top left;
-  transform: translate(0, 1.9rem) scale(1);
+  transform: translate(0, 2.4rem) scale(1);
 
   transition: all 0.2s ease-out;
 }

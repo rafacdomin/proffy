@@ -6,12 +6,14 @@ import TeacherList from './pages/TeacherList';
 import TeacherForm from './pages/TeacherForm';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import ResetPassword from './pages/ResetPassword';
 
 export function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Login} />
-      <Route path="/register" exact component={SignUp} />
+      <Route path="/register" component={SignUp} />
+      <Route path="/reset-password" component={ResetPassword} />
       <Route path="/home" component={Landing} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
