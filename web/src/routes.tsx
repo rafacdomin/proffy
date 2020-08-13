@@ -7,6 +7,7 @@ import TeacherForm from './pages/TeacherForm';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
+import Success from './pages/Success';
 
 export function Routes() {
   return (
@@ -17,6 +18,8 @@ export function Routes() {
       <Route path="/home" component={Landing} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
+
+      <Route path="/success" render={(props) => <Success />} />
     </BrowserRouter>
   );
 }
