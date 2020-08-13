@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import successIcon from '../../assets/images/icons/success.svg';
 
-import './styles.css';
+import { SuccessPage, SuccessContent } from './styles';
 
 interface SuccessProps {
   title: string;
@@ -12,15 +12,15 @@ interface SuccessProps {
 
 const Success: React.FC<SuccessProps> = ({ title, text }) => {
   return (
-    <div id="success-page">
-      <div className="success-content">
+    <SuccessPage>
+      <SuccessContent>
         <img src={successIcon} alt="Sucesso" />
         <h1>{title}</h1>
         <p>{text}</p>
 
         <Link to={{ pathname: '/' }}>Fazer login</Link>
-      </div>
-    </div>
+      </SuccessContent>
+    </SuccessPage>
   );
 };
 

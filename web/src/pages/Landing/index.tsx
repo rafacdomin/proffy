@@ -11,7 +11,7 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import HeartIcon from '../../assets/images/icons/heart.svg';
 import logoutIcon from '../../assets/images/icons/logout.svg';
 
-import './styles.css';
+import { LandingPage, LandingContent, Footer, Content } from './styles';
 
 function Landing() {
   const [totalConnections, setTotalConnections] = useState(0);
@@ -27,8 +27,8 @@ function Landing() {
   }, []);
 
   return (
-    <div id="page-landing">
-      <header id="header">
+    <LandingPage>
+      <header>
         <Link to="/" id="user">
           <img
             src="https://api.adorable.io/avatars/220/abott@adorable.png"
@@ -36,26 +36,22 @@ function Landing() {
           />
           Professor Adorable
         </Link>
-        <button className="logout-button">
+        <button>
           <img src={logoutIcon} alt="Sair" />
         </button>
       </header>
 
-      <div id="page-landing-content" className="container">
+      <LandingContent>
         <div className="logo-container">
           <img src={logoImg} alt="Proffy" />
           <h2>Sua plataforma de estudos online.</h2>
         </div>
 
-        <img
-          src={landingImg}
-          alt="Plataforma de estudos"
-          className="hero-image"
-        />
-      </div>
+        <img src={landingImg} alt="Plataforma de estudos" />
+      </LandingContent>
 
-      <footer>
-        <div id="footer">
+      <Footer>
+        <Content>
           <div className="welcome">
             <span>Seja bem-vindo.</span>
             <h1>O que deseja fazer?</h1>
@@ -79,9 +75,9 @@ function Landing() {
               <img src={HeartIcon} alt="Coração Roxo" />
             </span>
           </div>
-        </div>
-      </footer>
-    </div>
+        </Content>
+      </Footer>
+    </LandingPage>
   );
 }
 

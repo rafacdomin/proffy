@@ -1,16 +1,14 @@
 import React, { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 import Input from '../../components/InputFloatLabel';
 
 import logoImg from '../../assets/images/logo.svg';
-import background from '../../assets/images/bg.svg';
 import backLightIcon from '../../assets/images/icons/back-light.svg';
 //import backDarkIcon from '../../assets/images/icons/back-dark.svg';
 
-import './styles.css';
-import { Link } from 'react-router-dom';
+import { ResetPassPage, LogoContent, ResetPassContent } from './styles';
 
 interface FormData {
   name: string;
@@ -28,24 +26,21 @@ export default function ResetPassword() {
   };
 
   return (
-    <div id="resetpassword-page">
-      <header className="backButton">
+    <ResetPassPage>
+      <header>
         <Link to="/">
           <img src={backLightIcon} alt="Voltar" />
         </Link>
       </header>
-      <div
-        style={{
-          backgroundImage: `url(${background})`,
-        }}
-        className="logo-content"
-      >
+
+      <LogoContent>
         <div className="logo">
           <img src={logoImg} alt="Proffy" />
           <span>Sua plataforma de estudos online</span>
         </div>
-      </div>
-      <div className="resetpassword-page-content">
+      </LogoContent>
+
+      <ResetPassContent>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>
             Eita, esqueceu sua senha?
@@ -64,7 +59,7 @@ export default function ResetPassword() {
             Enviar
           </button>
         </Form>
-      </div>
-    </div>
+      </ResetPassContent>
+    </ResetPassPage>
   );
 }

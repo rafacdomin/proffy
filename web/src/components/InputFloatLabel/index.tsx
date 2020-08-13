@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useRef, useEffect, useState } from 'react';
 import { useField } from '@unform/core';
 
-import './styles.css';
+import { InputBlock } from './styles';
 
 import showPassIcon from '../../assets/images/icons/showPass.svg';
 import hidePassIcon from '../../assets/images/icons/hidePass.svg';
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({
   }
 
   return (
-    <div className="input-block">
+    <InputBlock>
       {label && (
         <label className={isActive ? 'Active' : ''} htmlFor={fieldName}>
           {label}
@@ -77,7 +77,7 @@ const Input: React.FC<InputProps> = ({
       </div>
 
       {error && <span className="error">{error}</span>}
-    </div>
+    </InputBlock>
   );
 };
 

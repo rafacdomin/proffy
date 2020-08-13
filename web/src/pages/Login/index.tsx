@@ -6,10 +6,9 @@ import Input from '../../components/InputFloatLabel';
 import Checkbox from './components/Checkbox';
 
 import logoImg from '../../assets/images/logo.svg';
-import background from '../../assets/images/bg.svg';
 import heartIcon from '../../assets/images/icons/heart.svg';
 
-import './styles.css';
+import { LoginPage, LogoContent, LoginContent, Footer } from './styles';
 
 interface FormData {
   name: string;
@@ -24,19 +23,15 @@ export default function Login() {
   };
 
   return (
-    <div id="login-page">
-      <div
-        style={{
-          backgroundImage: `url(${background})`,
-        }}
-        className="logo-content"
-      >
+    <LoginPage>
+      <LogoContent>
         <div className="logo">
           <img src={logoImg} alt="Proffy" />
           <span>Sua plataforma de estudos online</span>
         </div>
-      </div>
-      <div className="login-page-content">
+      </LogoContent>
+
+      <LoginContent>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Fazer login</h1>
 
@@ -52,11 +47,13 @@ export default function Login() {
             />
             <Link to="/reset-password">Esqueci minha senha</Link>
           </div>
+
           <button className="submit-button" type="submit">
             Entrar
           </button>
         </Form>
-        <footer>
+
+        <Footer>
           <span>
             Não tem conta? <Link to="/signup">Cadastre-se</Link>
           </span>
@@ -64,8 +61,8 @@ export default function Login() {
           <span>
             É de graça <img src={heartIcon} alt="Coração" />
           </span>
-        </footer>
-      </div>
-    </div>
+        </Footer>
+      </LoginContent>
+    </LoginPage>
   );
 }

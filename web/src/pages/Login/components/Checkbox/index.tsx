@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 
-import './styles.css';
+import { Container } from './styles';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -39,7 +39,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, options, ...rest }) => {
   }, [defaultValue, fieldName, registerField]);
 
   return (
-    <div className="checkbox">
+    <Container>
       {options.map((option, index) => (
         <label htmlFor={option.id} key={option.id}>
           <input
@@ -56,7 +56,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, options, ...rest }) => {
           {option.label}
         </label>
       ))}
-    </div>
+    </Container>
   );
 };
 

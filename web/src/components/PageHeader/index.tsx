@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logoImg from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back-light.svg';
 
-import './styles.css';
+import { Header } from './styles';
 
 interface PageHeaderProps {
   title: string;
@@ -17,7 +17,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   description,
 }) => {
   return (
-    <header className="page-header">
+    <Header>
       <div className="top-bar-container">
         <Link to="/">
           <img src={backIcon} alt="Voltar" />
@@ -31,7 +31,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         {description && <p>{description}</p>}
         {children}
       </div>
-    </header>
+    </Header>
   );
 };
 
