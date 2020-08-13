@@ -68,7 +68,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/rafacdomin/proffy
+$ git clone -b master https://github.com/rafacdomin/proffy
 
 # Go into the repository
 $ cd proffy
