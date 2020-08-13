@@ -58,7 +58,7 @@ export default function Login() {
         </Form>
         <footer>
           <span>
-            Não tem conta? <Link to="/register">Cadastre-se</Link>
+            Não tem conta? <Link to="/signup">Cadastre-se</Link>
           </span>
 
           <span>

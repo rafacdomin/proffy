@@ -13,13 +13,45 @@ export function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Login} />
-      <Route path="/register" component={SignUp} />
+      <Route path="/signup" component={SignUp} />
       <Route path="/reset-password" component={ResetPassword} />
       <Route path="/home" component={Landing} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
 
-      <Route path="/success" render={(props) => <Success />} />
+      <Route
+        path="/signup-success"
+        render={(props) => (
+          <Success
+            title="Cadastro concluído"
+            text="Agora você faz parte da plataforma da Proffy. 
+            Tenha uma ótima experiência."
+            {...props}
+          />
+        )}
+      />
+      <Route
+        path="/give-classes-success"
+        render={(props) => (
+          <Success
+            title="Cadastro salvo!"
+            text="Tudo certo, seu cadastro está na nossa lista de professores.
+            Agora é só ficar de olho no seu WhatsApp."
+            {...props}
+          />
+        )}
+      />
+      <Route
+        path="/reset-password-success"
+        render={(props) => (
+          <Success
+            title="Redefinição enviada!"
+            text="Boa, agora é só checar o e-mail que foi enviado para você,
+            redefinir sua senha e aproveitar os estudos."
+            {...props}
+          />
+        )}
+      />
     </BrowserRouter>
   );
 }

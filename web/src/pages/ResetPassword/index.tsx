@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 import Input from '../../components/InputFloatLabel';
@@ -18,9 +19,12 @@ interface FormData {
 
 export default function ResetPassword() {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
   const handleSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+
+    history.push('/reset-password-success');
   };
 
   return (
@@ -52,7 +56,11 @@ export default function ResetPassword() {
             <Input label="E-mail" name="email" type="email" />
           </div>
 
-          <button className="submit-button" type="submit">
+          <button
+            className="submit-button"
+            type="submit"
+            onClick={() => handleSubmit}
+          >
             Enviar
           </button>
         </Form>
