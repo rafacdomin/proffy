@@ -10,7 +10,12 @@ import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
-import './styles.css';
+import {
+  TeacherFormPage,
+  PageContent,
+  FormFieldset,
+  FormFooter,
+} from './styles';
 
 export default function TeacherForm() {
   const history = useHistory();
@@ -59,15 +64,15 @@ export default function TeacherForm() {
   }
 
   return (
-    <div id="page-teacher-form" className="container">
+    <TeacherFormPage>
       <PageHeader
         title="Que incrível que você quer dar aulas"
         description="O primeiro passo é preencher esse formulário de inscrição"
       />
 
-      <main>
+      <PageContent>
         <form onSubmit={handleCreateClass}>
-          <fieldset>
+          <FormFieldset>
             <legend>Seus dados</legend>
 
             <Input
@@ -94,9 +99,9 @@ export default function TeacherForm() {
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />
-          </fieldset>
+          </FormFieldset>
 
-          <fieldset>
+          <FormFieldset>
             <legend>Sobre a aula</legend>
 
             <Select
@@ -123,9 +128,9 @@ export default function TeacherForm() {
               value={cost}
               onChange={(e) => setCost(e.target.value)}
             />
-          </fieldset>
+          </FormFieldset>
 
-          <fieldset>
+          <FormFieldset>
             <legend>
               Horários disponíveis
               <button type="button" onClick={addNewScheduleItem}>
@@ -172,18 +177,18 @@ export default function TeacherForm() {
                 />
               </div>
             ))}
-          </fieldset>
+          </FormFieldset>
 
-          <footer>
+          <FormFooter>
             <p>
               <img src={warningIcon} alt="Aviso importante" />
               Importante! <br />
               Preencha todos os dados
             </p>
             <button type="submit">Salvar cadastro</button>
-          </footer>
+          </FormFooter>
         </form>
-      </main>
-    </div>
+      </PageContent>
+    </TeacherFormPage>
   );
 }

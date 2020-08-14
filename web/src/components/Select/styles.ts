@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const SelectBlock = styled.div`
   position: relative;
-  margin-top: 1.4rem;
 
   label {
     font-size: 1.4rem;
@@ -19,6 +18,10 @@ export const SelectBlock = styled.div`
     outline: 0;
     padding: 0 1.6rem;
     font: 1.6rem Archivo;
+
+    option {
+      border: 0;
+    }
   }
 
   &:focus-within::after {

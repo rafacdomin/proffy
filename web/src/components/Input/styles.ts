@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const InputBlock = styled.div`
   position: relative;
-  margin-top: 1.4rem;
 
   &:first-child {
     margin-top: 0;

@@ -7,7 +7,7 @@ import Select from '../../components/Select';
 
 import api from '../../services/api';
 
-import './styles.css';
+import { ListPage, SearchTeacher } from './styles';
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
@@ -40,9 +40,9 @@ export default function TeacherList() {
   }
 
   return (
-    <div id="page-teacher-list" className="container">
+    <ListPage>
       <PageHeader title="Estes são os proffys disponíveis.">
-        <form id="search-teachers" onSubmit={searchClasses}>
+        <SearchTeacher onSubmit={searchClasses}>
           <Select
             name="subject"
             label="Matéria"
@@ -83,8 +83,9 @@ export default function TeacherList() {
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
+
           <button type="submit">Buscar</button>
-        </form>
+        </SearchTeacher>
       </PageHeader>
 
       <main>
@@ -92,6 +93,6 @@ export default function TeacherList() {
           <TeacherItem key={teacher.id} teacher={teacher} />
         ))}
       </main>
-    </div>
+    </ListPage>
   );
 }

@@ -1,27 +1,21 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
+export const TopBar = styled.header`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  background-color: var(--color-primary);
-  margin: 0;
-  width: 100vw;
-  height: 40vh;
-  max-height: 340px;
-  overflow: hidden;
-
-  @media (min-width: 700px) {
-    height: 340px;
-  }
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-darker);
+  margin-bottom: 1.6rem;
 
   .top-bar-container {
-    width: 90vw;
+    width: 90%;
+    height: 4.2rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--color-text-in-primary);
-    padding: 1.6rem 0;
 
     @media (min-width: 700px) {
       max-width: 1100px;
@@ -29,6 +23,8 @@ export const Header = styled.div`
 
     a {
       height: 3.2rem;
+      display: flex;
+      align-items: center;
       transition: opacity 0.2s;
 
       &:hover {
@@ -36,9 +32,28 @@ export const Header = styled.div`
       }
     }
 
+    h1 {
+      font-weight: normal;
+      font: 600 1.6rem Archivo;
+    }
+
     img {
       height: 1.6rem;
     }
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-primary);
+  margin: 0;
+  width: 100vw;
+  margin-bottom: 2.4rem;
+
+  @media (min-width: 700px) {
+    margin-bottom: 0;
   }
 
   .header-content {
