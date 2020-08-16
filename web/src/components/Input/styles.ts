@@ -24,7 +24,7 @@ export const InputBlock = styled.div`
   input {
     width: 100%;
     height: 5.6rem;
-    margin-top: 1.2rem;
+    margin-top: 0.8rem;
     border-radius: 0.8rem;
     background: var(--color-input-background);
     border: 1px solid var(--color-line-in-white);

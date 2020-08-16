@@ -5,11 +5,7 @@ export const TeacherFormPage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  @media (min-width: 700px) {
-    max-width: 1100px;
-    margin: 0;
-  }
+  overflow-x: hidden;
 `;
 
 export const PageContent = styled.main`
@@ -18,37 +14,16 @@ export const PageContent = styled.main`
   max-width: 74rem;
   border-radius: 0.8rem;
   margin: -3.2rem auto 0 auto;
-  padding-top: 6.4rem;
+  padding-top: 3.2rem;
 
   @media (min-width: 700px) {
     margin-bottom: 3.2rem;
   }
-
-  .schedule-item {
-    @media (min-width: 700px) {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      column-gap: 1.6rem;
-    }
-  }
-
-  label {
-    color: var(--color-text-complement);
-  }
 `;
-
 export const FormFieldset = styled.fieldset`
   border: 0;
   padding: 0 2.4rem;
-  margin-top: 6.4rem;
-
-  @media (min-width: 700px) {
-    padding: 0 6.4rem;
-  }
-
-  &:first-child {
-    margin-top: 0;
-  }
+  padding-bottom: 6.4rem;
 
   legend {
     font: 700 2.4rem Archivo;
@@ -74,13 +49,50 @@ export const FormFieldset = styled.fieldset`
       }
     }
   }
+
+  .schedule-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-line-in-white);
+
+    @media (min-width: 700px) {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      column-gap: 1.6rem;
+      align-items: center;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    button {
+      align-self: center;
+      margin-bottom: -1.2rem;
+      width: 14rem;
+      background: var(--color-box-base);
+      color: #ab3e3e;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+
+      @media (min-width: 700px) {
+        justify-self: flex-end;
+        margin-right: -80px;
+      }
+    }
+  }
 `;
 
 export const FormFooter = styled.footer`
   padding: 4rem 2.4rem;
   background: var(--color-box-footer);
   border-top: 1px solid var(--color-line-in-white);
-  margin-top: 6.4rem;
   max-width: 74rem;
 
   @media (min-width: 700px) {

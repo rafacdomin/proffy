@@ -7,7 +7,7 @@ import Select from '../../components/Select';
 
 import api from '../../services/api';
 
-import { ListPage, SearchTeacher } from './styles';
+import { ListPage, SearchTeacher, List } from './styles';
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
@@ -88,11 +88,11 @@ export default function TeacherList() {
         </SearchTeacher>
       </PageHeader>
 
-      <main>
+      <List>
         {classes.map((teacher: Teacher) => (
           <TeacherItem key={teacher.id} teacher={teacher} />
         ))}
-      </main>
+      </List>
     </ListPage>
   );
 }
