@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back-light.svg';
@@ -7,15 +7,37 @@ import backIcon from '../../assets/images/icons/back-light.svg';
 import { Header, TopBar } from './styles';
 
 interface PageHeaderProps {
-  title: string;
+  title?: string;
   description?: string;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
   title,
-  children,
   description,
+  children,
 }) => {
+  const location = useLocation();
+  const [pageName, setPageName] = useState('');
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/study':
+        setPageName('Estudar');
+        break;
+
+      case '/give-classes':
+        setPageName('Dar Aulas');
+        break;
+
+      case '/profile':
+        setPageName('Meu Perfil');
+        break;
+
+      default:
+        setPageName('');
+    }
+  }, [location]);
+
   return (
     <Header>
       <TopBar>
@@ -24,7 +46,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             <img src={backIcon} alt="Voltar" />
           </Link>
 
-          <h1>Estudar</h1>
+          <h1>{pageName}</h1>
 
           <img src={logoImg} alt="Proffy" />
         </div>
@@ -32,7 +54,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
       <div className="header-content">
         <div className="content">
-          <strong>{title}</strong>
+          {title && <strong>{title}</strong>}
           {description && <p>{description}</p>}
         </div>
         {children}

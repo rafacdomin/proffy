@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const SelectBlock = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   label {
     font-size: 1.4rem;
@@ -17,7 +19,7 @@ export const SelectBlock = styled.div`
     border: 1px solid var(--color-line-in-white);
     outline: 0;
     padding: 0 1.6rem;
-    font: 1.6rem Archivo;
+    font: 400 1.6rem Archivo;
 
     option {
       border: 0;
@@ -32,6 +34,6 @@ export const SelectBlock = styled.div`
     position: absolute;
     left: 1.6rem;
     right: 1.6rem;
-    bottom: 0;
+    bottom: 1.4rem;
   }
 `;

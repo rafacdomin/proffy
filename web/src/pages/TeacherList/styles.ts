@@ -38,6 +38,7 @@ export const SearchTeacher = styled.form`
     background: var(--color-secundary);
     color: var(--color-button-text);
     border: 0;
+    outline: 0;
     border-radius: 0.8rem;
     cursor: pointer;
     font: 700 1.6rem Archivo;

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const TextAreaBlock = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   &:last-child {
     margin-top: 1.4rem;

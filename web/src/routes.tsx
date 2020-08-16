@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import Success from './pages/Success';
+import Profile from './pages/Profile';
 
 export function Routes() {
   return (
@@ -15,10 +16,15 @@ export function Routes() {
       <Route path="/" exact component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/reset-password" component={ResetPassword} />
+
+      {/* With Auth */}
+
       <Route path="/home" component={Landing} />
+      <Route path="/profile" component={Profile} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
 
+      {/* Success Modal */}
       <Route
         path="/signup-success"
         render={(props) => (

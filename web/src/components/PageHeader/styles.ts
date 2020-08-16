@@ -11,7 +11,6 @@ export const TopBar = styled.header`
   .top-bar-container {
     width: 90%;
     height: 4.2rem;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,6 +32,7 @@ export const TopBar = styled.header`
     }
 
     h1 {
+      margin-left: 25px;
       font-weight: normal;
       font: 600 1.6rem Archivo;
     }
@@ -47,6 +47,7 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: var(--color-primary);
   margin: 0;
   width: 100vw;
@@ -57,38 +58,31 @@ export const Header = styled.div`
   }
 
   .header-content {
-    width: 90vw;
-    margin: 0 auto;
     position: relative;
-    margin: 3.2rem auto;
+    margin: 3.2rem 1.6rem;
 
     @media (min-width: 700px) {
-      flex: 1;
       max-width: 740px;
+      width: 100%;
       margin: 0 auto;
       padding-bottom: 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
     }
 
-    strong {
-      font: 700 3.6rem Archivo;
-      line-height: 4.2rem;
-      color: var(--color-title-in-primary);
-
-      @media (min-width: 700px) {
-        max-width: 350px;
+    .content {
+      max-width: 400px;
+      strong {
+        font: 700 3.6rem Archivo;
+        line-height: 4.2rem;
+        color: var(--color-title-in-primary);
       }
-    }
 
-    p {
-      max-width: 30rem;
-      font-size: 1.6rem;
-      line-height: 2.6rem;
-      color: var(--color-text-in-primary);
-      margin-top: 2.4rem;
+      p {
+        max-width: 30rem;
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+        color: var(--color-text-in-primary);
+        margin-top: 2.4rem;
+      }
     }
   }
 `;
