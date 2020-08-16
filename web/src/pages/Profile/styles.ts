@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import bg from '../../assets/images/Background.svg';
+import camera from '../../assets/images/icons/camera.svg';
 
 export const ProfilePage = styled.div`
   display: flex;
@@ -31,6 +32,20 @@ export const AvatarFieldset = styled.div`
   margin-top: -40rem;
   position: sticky;
 
+  &::after {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    content: '';
+    position: absolute;
+    background: var(--color-secundary);
+    background-image: url(${camera});
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 12rem;
+    margin-bottom: 1.6rem;
+  }
+
   @media (min-width: 700px) {
     margin-top: -38rem;
   }
@@ -40,6 +55,7 @@ export const AvatarFieldset = styled.div`
     width: 18rem;
     border-radius: 50%;
     margin-bottom: 3.2rem;
+    position: relative;
   }
 
   h1 {
@@ -54,7 +70,7 @@ export const AvatarFieldset = styled.div`
     margin-bottom: 6.4rem;
 
     @media (min-width: 700px) {
-      margin-bottom: 1.8rem;
+      margin-bottom: 3.4rem;
     }
   }
 `;
@@ -101,16 +117,22 @@ export const FormFields = styled.div`
       }
     }
 
-    .fields {
+    .contactfields {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 32px;
+      }
 
       input {
         width: 16rem;
 
         @media (min-width: 700px) {
-          width: 34rem;
+          width: 100%;
         }
       }
 
@@ -118,7 +140,35 @@ export const FormFields = styled.div`
         width: 16rem;
 
         @media (min-width: 700px) {
-          width: 34rem;
+          width: 100%;
+        }
+      }
+    }
+
+    .fields {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 32px;
+      }
+
+      input {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+
+      select {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
         }
       }
     }
@@ -153,6 +203,11 @@ export const FormFields = styled.div`
         border: 0;
         outline: 0;
         cursor: pointer;
+
+        @media (min-width: 700px) {
+          justify-self: flex-end;
+          margin-right: -80px;
+        }
       }
     }
   }

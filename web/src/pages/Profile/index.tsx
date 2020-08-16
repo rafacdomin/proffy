@@ -42,7 +42,7 @@ const Profile: React.FC = () => {
                 <Input name="lastname" label="Sobrenome" />
               </div>
 
-              <div className="fields">
+              <div className="contactfields">
                 <Input
                   className="email"
                   type="email"
@@ -58,7 +58,7 @@ const Profile: React.FC = () => {
             <fieldset>
               <legend>Sobre a aula</legend>
 
-              <div className="fields">
+              <div className="contactfields">
                 <Select
                   name="subject"
                   label="Matéria"
@@ -85,26 +85,24 @@ const Profile: React.FC = () => {
                 Horários disponíveis
                 <button type="button">+ Novo horário</button>
               </legend>
-              <div className="fields">
-                <div className="schedule-item">
-                  <Select
-                    name="week_day"
-                    label="Dia da semana"
-                    options={[
-                      { value: '0', label: 'Domingo' },
-                      { value: '1', label: 'Segunda-feira' },
-                      { value: '2', label: 'Terça-feira' },
-                      { value: '3', label: 'Quarta-feira' },
-                      { value: '4', label: 'Quinta-feira' },
-                      { value: '5', label: 'Sexta-feira' },
-                      { value: '6', label: 'Sábado' },
-                    ]}
-                  />
-                  <Input name="from" label="Das" type="time" />
-                  <Input name="to" label="Até" type="time" />
+              <div className="schedule-item">
+                <Select
+                  name="week_day"
+                  label="Dia da semana"
+                  options={[
+                    { value: '0', label: 'Domingo' },
+                    { value: '1', label: 'Segunda-feira' },
+                    { value: '2', label: 'Terça-feira' },
+                    { value: '3', label: 'Quarta-feira' },
+                    { value: '4', label: 'Quinta-feira' },
+                    { value: '5', label: 'Sexta-feira' },
+                    { value: '6', label: 'Sábado' },
+                  ]}
+                />
+                <Input name="from" label="Das" type="time" />
+                <Input name="to" label="Até" type="time" />
 
-                  <button>Excluir horário</button>
-                </div>
+                <button>Excluir horário</button>
               </div>
             </fieldset>
 

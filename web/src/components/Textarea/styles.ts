@@ -35,6 +35,6 @@ export const TextAreaBlock = styled.div`
     position: absolute;
     left: 1.6rem;
     right: 1.6rem;
-    bottom: 7px;
+    bottom: 0px;
   }
 `;
