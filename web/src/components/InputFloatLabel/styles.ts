@@ -69,4 +69,11 @@ export const InputBlock = styled.div`
       cursor: pointer;
     }
   }
+
+  .error {
+    color: #ab3e3e;
+    font: 400 1.2rem Poppins;
+    margin: 0 0 10px 10px;
+    font-weight: bold;
+  }
 `;

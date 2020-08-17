@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
@@ -17,7 +18,31 @@ export default function Login() {
   const { signIn } = useAuth();
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
-    await signIn(data);
+    try {
+      // Remove all previous errors
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string().email().required('E-mail obrigatório'),
+        password: Yup.string().required('Senha obrigatória'),
+      });
+
+      await schema.validate(data, { abortEarly: false });
+
+      // validation passed
+      await signIn(data);
+    } catch (err) {
+      const validationErrors: any = {};
+
+      if (err instanceof Yup.ValidationError) {
+        // validation fails
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+
+        formRef.current?.setErrors(validationErrors);
+      }
+    }
   };
 
   return (
