@@ -17,6 +17,7 @@ interface MyRequest extends Request {
 export default class ClassesController {
   async index(req: Request, res: Response) {
     const filters = req.query;
+    const { page = 1 } = req.query;
 
     const subject = filters.subject as string;
     const week_day = filters.week_day as string;
@@ -26,7 +27,9 @@ export default class ClassesController {
       const classes = await db('classes')
         .join('users', 'classes.user_id', '=', 'users.id')
         .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
-        .select(['classes.*', 'users.*', 'class_schedule.*']);
+        .select(['classes.*', 'users.*', 'class_schedule.*'])
+        .limit(10)
+        .offset((Number(page) - 1) * 10);
 
       return res.json(classes);
     }
@@ -45,7 +48,9 @@ export default class ClassesController {
       .where('classes.subject', '=', subject)
       .join('users', 'classes.user_id', '=', 'users.id')
       .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
-      .select(['classes.*', 'users.*', 'class_schedule.*']);
+      .select(['classes.*', 'users.*', 'class_schedule.*'])
+      .limit(10)
+      .offset((Number(page) - 1) * 10);
 
     return res.json(classes);
   }
