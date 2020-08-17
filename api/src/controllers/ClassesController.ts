@@ -44,7 +44,7 @@ export default class ClassesController {
     return res.json(classes);
   }
 
-  async create(req: Request, res: Response) {
+  async store(req: Request, res: Response) {
     const { name, avatar, whatsapp, bio, subject, cost, schedule } = req.body;
 
     const trx = await db.transaction();
