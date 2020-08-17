@@ -10,6 +10,10 @@ interface ScheduleItem {
   to: string;
 }
 
+interface MyRequest extends Request {
+  id?: number;
+}
+
 export default class ClassesController {
   async index(req: Request, res: Response) {
     const filters = req.query;
@@ -21,7 +25,8 @@ export default class ClassesController {
     if (!filters.week_day || !filters.subject || !filters.time) {
       const classes = await db('classes')
         .join('users', 'classes.user_id', '=', 'users.id')
-        .select(['classes.*', 'users.*']);
+        .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
+        .select(['classes.*', 'users.*', 'class_schedule.*']);
 
       return res.json(classes);
     }
@@ -39,28 +44,73 @@ export default class ClassesController {
       })
       .where('classes.subject', '=', subject)
       .join('users', 'classes.user_id', '=', 'users.id')
-      .select(['classes.*', 'users.*']);
+      .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
+      .select(['classes.*', 'users.*', 'class_schedule.*']);
 
     return res.json(classes);
   }
 
-  async store(req: Request, res: Response) {
-    const { name, avatar, whatsapp, bio, subject, cost, schedule } = req.body;
+  async update(req: MyRequest, res: Response) {
+    const { subject, cost, schedule } = req.body;
+    const id = req.id;
 
     const trx = await db.transaction();
 
     try {
-      const insertedUsersIds = await trx('users').insert({
-        name,
-        avatar,
+      await trx('classes').where('user_id', id).update({
+        subject,
+        cost,
+      });
+
+      const classes = await trx('classes').where('user_id', id);
+
+      if (schedule) {
+        const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
+          return {
+            user_id: id,
+            class_id: classes[0].id,
+            week_day: scheduleItem.week_day,
+            from: convertHourToMinutes(scheduleItem.from),
+            to: convertHourToMinutes(scheduleItem.to),
+          };
+        });
+
+        await trx('class_schedule').where('class_id', classes[0].id).del();
+
+        await trx('class_schedule').insert(classSchedule);
+      }
+
+      await trx.commit();
+
+      return res.status(200).send();
+    } catch (err) {
+      console.log(err);
+
+      await trx.rollback();
+
+      return res
+        .status(400)
+        .json({ error: 'Unexpected error while updating class' });
+    }
+  }
+
+  async store(req: MyRequest, res: Response) {
+    const { whatsapp, bio, subject, cost, schedule } = req.body;
+    const id = req.id;
+
+    const trx = await db.transaction();
+
+    try {
+      await trx('users').where('id', id).update({
         whatsapp,
         bio,
       });
 
-      const user_id = insertedUsersIds[0];
+      await trx('classes').where('user_id', id).del();
+      await trx('class_schedule').where('user_id', id).del();
 
       const insertedClassesIds = await trx('classes').insert({
-        user_id,
+        user_id: id,
         subject,
         cost,
       });
@@ -69,6 +119,7 @@ export default class ClassesController {
 
       const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
         return {
+          user_id: id,
           class_id,
           week_day: scheduleItem.week_day,
           from: convertHourToMinutes(scheduleItem.from),

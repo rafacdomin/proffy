@@ -2,6 +2,10 @@ import db from '../database/connection';
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 
+interface MyRequest extends Request {
+  id?: number;
+}
+
 export default class UserController {
   async store(req: Request, res: Response) {
     const { name, email, password } = req.body;
@@ -37,9 +41,9 @@ export default class UserController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: MyRequest, res: Response) {
     const { name, email, bio, whatsapp, avatar } = req.body;
-    const { id } = req.params;
+    const id = req.id;
 
     const userExists = await db('users').where('id', id);
 
@@ -60,7 +64,7 @@ export default class UserController {
 
       await trx.commit();
 
-      return res.status(201).send();
+      return res.status(200).send();
     } catch (err) {
       console.log(err);
 
@@ -72,8 +76,8 @@ export default class UserController {
     }
   }
 
-  async show(req: Request, res: Response) {
-    const { id } = req.params;
+  async show(req: MyRequest, res: Response) {
+    const id = req.id;
 
     const userExists = await db('users')
       .select('id', 'email', 'name', 'avatar', 'whatsapp', 'bio')
