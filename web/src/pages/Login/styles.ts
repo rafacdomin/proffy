@@ -122,6 +122,7 @@ export const LoginContent = styled.main`
       justify-content: center;
 
       border: 0;
+      outline: 0;
       border-radius: 0.8rem;
       color: var(--color-button-text);
       background: var(--color-secundary);

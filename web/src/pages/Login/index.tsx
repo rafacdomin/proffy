@@ -5,21 +5,19 @@ import { Form } from '@unform/web';
 import Input from '../../components/InputFloatLabel';
 import Checkbox from './components/Checkbox';
 
+import { FormData, useAuth } from '../../contexts/auth';
+
 import logoImg from '../../assets/images/logo.svg';
 import heartIcon from '../../assets/images/icons/heart.svg';
 
 import { LoginPage, LogoContent, LoginContent, Footer } from './styles';
 
-interface FormData {
-  name: string;
-  email: string;
-}
-
 export default function Login() {
   const formRef = useRef<FormHandles>(null);
+  const { signIn } = useAuth();
 
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+    await signIn(data);
   };
 
   return (

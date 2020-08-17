@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
+import { useAuth } from '../../contexts/auth';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/ilustra.svg';
@@ -14,6 +15,7 @@ import logoutIcon from '../../assets/images/icons/logout.svg';
 import { LandingPage, LandingContent, Footer, Content } from './styles';
 
 function Landing() {
+  const { signOut } = useAuth();
   const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
@@ -26,6 +28,10 @@ function Landing() {
     getConnections();
   }, []);
 
+  async function handleLogOut() {
+    signOut();
+  }
+
   return (
     <LandingPage>
       <header>
@@ -36,7 +42,7 @@ function Landing() {
           />
           Professor Adorable
         </Link>
-        <button>
+        <button type="button" onClick={handleLogOut}>
           <img src={logoutIcon} alt="Sair" />
         </button>
       </header>
