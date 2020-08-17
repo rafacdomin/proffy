@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 import Input from '../../components/InputFloatLabel';
+
+import api from '../../services/api';
 
 import logoImg from '../../assets/images/logo.svg';
 import backLightIcon from '../../assets/images/icons/back-light.svg';
@@ -11,14 +13,28 @@ import { SignUpPage, LogoContent, SignUpContent } from './styles';
 
 interface FormData {
   name: string;
+  lastname: string;
   email: string;
+  password: string;
 }
 
 export default function SignUp() {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const handleSubmit: SubmitHandler<FormData> = async ({
+    name,
+    lastname,
+    email,
+    password,
+  }) => {
+    await api.post('/users', {
+      name: `${name} ${lastname}`,
+      email,
+      password,
+    });
+
+    history.push('/signup-success');
   };
 
   return (
