@@ -25,7 +25,7 @@ export default class ClassesController {
 
     if (!filters.week_day || !filters.subject || !filters.time) {
       const classes = await db('classes')
-        .join('users', 'classes.user_id', '=', 'users.id')
+        .join('users', 'classes.owner_id', '=', 'users.id')
         .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
         .select(['classes.*', 'users.*', 'class_schedule.*'])
         .limit(10)
@@ -46,7 +46,7 @@ export default class ClassesController {
           .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes]);
       })
       .where('classes.subject', '=', subject)
-      .join('users', 'classes.user_id', '=', 'users.id')
+      .join('users', 'classes.owner_id', '=', 'users.id')
       .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
       .select(['classes.*', 'users.*', 'class_schedule.*'])
       .limit(10)
@@ -62,17 +62,17 @@ export default class ClassesController {
     const trx = await db.transaction();
 
     try {
-      await trx('classes').where('user_id', id).update({
+      await trx('classes').where('owner_id', id).update({
         subject,
         cost,
       });
 
-      const classes = await trx('classes').where('user_id', id);
+      const classes = await trx('classes').where('owner_id', id);
 
       if (schedule) {
         const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
           return {
-            user_id: id,
+            owner_id: id,
             class_id: classes[0].id,
             week_day: scheduleItem.week_day,
             from: convertHourToMinutes(scheduleItem.from),
@@ -111,11 +111,11 @@ export default class ClassesController {
         bio,
       });
 
-      await trx('classes').where('user_id', id).del();
-      await trx('class_schedule').where('user_id', id).del();
+      await trx('classes').where('owner_id', id).del();
+      await trx('class_schedule').where('owner_id', id).del();
 
       const insertedClassesIds = await trx('classes').insert({
-        user_id: id,
+        owner_id: id,
         subject,
         cost,
       });
@@ -124,7 +124,7 @@ export default class ClassesController {
 
       const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
         return {
-          user_id: id,
+          owner_id: id,
           class_id,
           week_day: scheduleItem.week_day,
           from: convertHourToMinutes(scheduleItem.from),
