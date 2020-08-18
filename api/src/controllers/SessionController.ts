@@ -9,7 +9,10 @@ export default class SessionController {
   async store(req: Request, res: Response) {
     const { email, password } = req.body;
 
-    const userExists = await db('users').where('email', email);
+    const userExists = await db('users')
+      .where('email', email)
+      .join('classes', 'users.id', '=', 'classes.owner_id')
+      .select(['users.*', 'classes.*']);
 
     if (userExists.length === 0) {
       return res.status(400).json({ error: 'User does not exists' });
@@ -19,17 +22,10 @@ export default class SessionController {
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    const { id, name, bio, whatsapp, avatar } = userExists[0];
+    const { id } = userExists[0];
 
     return res.json({
-      user: {
-        id,
-        name,
-        email,
-        bio,
-        whatsapp,
-        avatar,
-      },
+      user: userExists[0],
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),

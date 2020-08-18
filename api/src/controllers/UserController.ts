@@ -88,6 +88,6 @@ export default class UserController {
       return res.status(400).json({ error: "User doesn't exists" });
     }
 
-    return res.json(userExists);
+    return res.json(userExists[0]);
   }
 }
