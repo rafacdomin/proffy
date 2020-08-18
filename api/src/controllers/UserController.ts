@@ -80,8 +80,9 @@ export default class UserController {
     const id = req.id;
 
     const userExists = await db('users')
-      .select('id', 'email', 'name', 'avatar', 'whatsapp', 'bio')
-      .where('id', id);
+      .where('users.id', id)
+      .join('classes', 'users.id', '=', 'classes.owner_id')
+      .select(['users.*', 'classes.*']);
 
     if (userExists.length === 0) {
       return res.status(400).json({ error: "User doesn't exists" });
