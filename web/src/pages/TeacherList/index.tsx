@@ -11,8 +11,8 @@ import { ListPage, SearchTeacher, List } from './styles';
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
-  const [subject] = useState('');
-  const [week_day] = useState('');
+  const [subject, setSubject] = useState('');
+  const [week_day, setWeekDay] = useState('');
   const [time, setTime] = useState('');
 
   useEffect(() => {

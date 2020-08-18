@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from '@unform/web';
 
 export const ListPage = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const ListPage = styled.div`
   overflow-x: hidden;
 `;
 
-export const SearchTeacher = styled.form`
+export const SearchTeacher = styled(Form)`
   margin-top: 4.8rem;
   color: var(--color-text-in-primary);
   font: 400 1.4rem Poppins;

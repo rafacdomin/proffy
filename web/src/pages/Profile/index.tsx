@@ -19,6 +19,7 @@ import {
 } from './styles';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import api from '../../services/api';
 
 const Profile: React.FC = () => {
   const { user } = useAuth();
@@ -34,6 +35,16 @@ const Profile: React.FC = () => {
       cost: user?.cost,
       subject: user?.subject,
     });
+  }, [user]);
+
+  useEffect(() => {
+    async function loadSchedule() {
+      const response = await api.get(`/classes/${user?.id}`);
+
+      console.log(response.data);
+    }
+
+    loadSchedule();
   }, [user]);
 
   return (

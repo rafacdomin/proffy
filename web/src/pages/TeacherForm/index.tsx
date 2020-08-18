@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Form } from '@unform/web';
 
 import api from '../../services/api';
 
@@ -71,7 +72,7 @@ export default function TeacherForm() {
       />
 
       <PageContent>
-        <form onSubmit={handleCreateClass}>
+        <Form onSubmit={handleCreateClass}>
           <FormFieldset>
             <legend>Seus dados</legend>
 
@@ -181,7 +182,7 @@ export default function TeacherForm() {
             </p>
             <button type="submit">Salvar cadastro</button>
           </FormFooter>
-        </form>
+        </Form>
       </PageContent>
     </TeacherFormPage>
   );
