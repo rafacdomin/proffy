@@ -47,7 +47,7 @@ export const InputBlock = styled.div`
 
   input {
     width: 100%;
-    height: 5.6rem;
+    height: 4.2rem;
     background: var(--color-input-background);
     border: 0;
     outline: 0;

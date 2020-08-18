@@ -24,7 +24,7 @@ export default function TeacherForm() {
   const [avatar, setAvatar] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [bio, setBio] = useState('');
-  const [subject, setSubject] = useState('');
+  const [subject] = useState('');
   const [cost, setCost] = useState('');
 
   const [scheduleItems, setScheduleItems] = useState([
@@ -107,8 +107,6 @@ export default function TeacherForm() {
             <Select
               name="subject"
               label="Matéria"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
               options={[
                 { value: 'Artes', label: 'Artes' },
                 { value: 'História', label: 'História' },
@@ -143,10 +141,6 @@ export default function TeacherForm() {
                 <Select
                   name="week_day"
                   label="Dia da semana"
-                  value={scheduleItem.week_day}
-                  onChange={(e) =>
-                    setScheduleItemValue(index, 'week_day', e.target.value)
-                  }
                   options={[
                     { value: '0', label: 'Domingo' },
                     { value: '1', label: 'Segunda-feira' },

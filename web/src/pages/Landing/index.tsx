@@ -15,7 +15,7 @@ import logoutIcon from '../../assets/images/icons/logout.svg';
 import { LandingPage, LandingContent, Footer, Content } from './styles';
 
 function Landing() {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
@@ -35,12 +35,15 @@ function Landing() {
   return (
     <LandingPage>
       <header>
-        <Link to="/" id="user">
+        <Link to="/profile" id="user">
           <img
-            src="https://api.adorable.io/avatars/220/abott@adorable.png"
+            src={
+              user?.avatar ||
+              `https://avatars.dicebear.com/api/initials/${user?.name}.svg`
+            }
             alt="Avatar de usuário"
           />
-          Professor Adorable
+          {user?.name}
         </Link>
         <button type="button" onClick={handleLogOut}>
           <img src={logoutIcon} alt="Sair" />

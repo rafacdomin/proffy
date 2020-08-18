@@ -145,6 +145,30 @@ export const FormFields = styled.div`
       }
     }
 
+    .subjectfields {
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 32px;
+      }
+
+      input {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+
+      select {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+    }
+
     .fields {
       display: flex;
       justify-content: space-between;

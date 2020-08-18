@@ -23,7 +23,7 @@ export const InputBlock = styled.div`
 
   input {
     width: 100%;
-    height: 5.6rem;
+    height: 4.2rem;
     margin-top: 0.8rem;
     border-radius: 0.8rem;
     background: var(--color-input-background);

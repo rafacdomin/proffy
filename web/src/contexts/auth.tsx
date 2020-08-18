@@ -7,9 +7,20 @@ export interface FormData {
   checkbox: Array<[]>;
 }
 
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+  bio: string;
+  whatsapp: string;
+  avatar: string;
+  subject: string;
+  cost: number;
+}
+
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: UserData | null;
   signIn(data: FormData): Promise<void>;
   signOut(): void;
 }
@@ -17,7 +28,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<UserData | null>(null);
 
   useEffect(() => {
     async function loadStoragedData() {

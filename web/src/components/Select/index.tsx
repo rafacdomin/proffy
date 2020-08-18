@@ -1,30 +1,52 @@
-import React, { SelectHTMLAttributes } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { OptionTypeBase, Props as SelectProps } from 'react-select';
+import { useField } from '@unform/core';
 
-import { SelectBlock } from './styles';
+import { SelectBlock, MySelect } from './styles';
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface Props extends SelectProps<OptionTypeBase> {
   label: string;
   name: string;
-  options: Array<{
-    value: string;
-    label: string;
-  }>;
+  initialData?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ label, name, options, ...rest }) => {
+const Select: React.FC<Props> = ({ label, name, initialData, ...rest }) => {
+  const selectRef = useRef(null);
+  const { fieldName, defaultValue, registerField } = useField(name);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: selectRef.current,
+      getValue: (ref: any) => {
+        if (rest.isMulti) {
+          if (!ref.state.value) {
+            return [];
+          }
+          return ref.state.value.map((option: OptionTypeBase) => option.value);
+        }
+        if (!ref.state.value) {
+          return '';
+        }
+        return ref.state.value.value;
+      },
+    });
+  }, [fieldName, registerField, rest.isMulti]);
+
   return (
     <SelectBlock>
       <label htmlFor={name}>{label}</label>
-      <select value="" id={name} {...rest}>
-        <option value="" disabled hidden>
-          Selecione uma opção
-        </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <MySelect
+        defaultValue={
+          initialData
+            ? { label: initialData, value: initialData }
+            : defaultValue
+        }
+        ref={selectRef}
+        classNamePrefix="react-select"
+        placeholder="Selecionar"
+        {...rest}
+      />
     </SelectBlock>
   );
 };

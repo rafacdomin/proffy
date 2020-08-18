@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import Input from '../../components/Input';
+
+import { useAuth } from '../../contexts/auth';
 
 import PageHeader from '../../components/PageHeader';
-import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
@@ -17,6 +21,21 @@ import {
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 const Profile: React.FC = () => {
+  const { user } = useAuth();
+  const formRef = useRef<FormHandles>(null);
+
+  useEffect(() => {
+    formRef.current?.setData({
+      name: user?.name.split(' ')[0],
+      lastname: user?.name.split(' ')[1],
+      email: user?.email,
+      whatsapp: user?.whatsapp,
+      bio: user?.bio,
+      cost: user?.cost,
+      subject: user?.subject,
+    });
+  }, [user]);
+
   return (
     <ProfilePage>
       <PageHeader>
@@ -24,14 +43,17 @@ const Profile: React.FC = () => {
       </PageHeader>
 
       <ProfileContent>
-        <form>
+        <Form ref={formRef} onSubmit={() => {}}>
           <AvatarFieldset>
             <img
-              src="https://api.adorable.io/avatars/400/abott@adorable.io.png"
+              src={
+                user?.avatar ||
+                `https://avatars.dicebear.com/api/initials/${user?.name}.svg`
+              }
               alt="avatar"
             />
-            <h1>Professor Adorable</h1>
-            <span>História</span>
+            <h1>{user?.name}</h1>
+            <span>{user?.subject}</span>
           </AvatarFieldset>
 
           <FormFields>
@@ -58,10 +80,11 @@ const Profile: React.FC = () => {
             <fieldset>
               <legend>Sobre a aula</legend>
 
-              <div className="contactfields">
+              <div className="subjectfields">
                 <Select
                   name="subject"
                   label="Matéria"
+                  initialData={user?.subject}
                   options={[
                     { value: 'Artes', label: 'Artes' },
                     { value: 'História', label: 'História' },
@@ -115,7 +138,7 @@ const Profile: React.FC = () => {
               <button type="submit">Salvar cadastro</button>
             </FormFooter>
           </FormFields>
-        </form>
+        </Form>
       </ProfileContent>
     </ProfilePage>
   );

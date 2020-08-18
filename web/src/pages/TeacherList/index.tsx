@@ -11,8 +11,8 @@ import { ListPage, SearchTeacher, List } from './styles';
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
-  const [subject, setSubject] = useState('');
-  const [week_day, setWeekDay] = useState('');
+  const [subject] = useState('');
+  const [week_day] = useState('');
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -46,8 +46,6 @@ export default function TeacherList() {
           <Select
             name="subject"
             label="Matéria"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
             options={[
               { value: 'Artes', label: 'Artes' },
               { value: 'História', label: 'História' },
@@ -64,8 +62,6 @@ export default function TeacherList() {
           <Select
             name="week_day"
             label="Dia da semana"
-            value={week_day}
-            onChange={(e) => setWeekDay(e.target.value)}
             options={[
               { value: '0', label: 'Domingo' },
               { value: '1', label: 'Segunda-feira' },
