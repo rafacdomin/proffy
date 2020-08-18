@@ -21,6 +21,7 @@ routes.use(authMiddleware);
 routes.post('/classes', classesController.store);
 routes.put('/classes', classesController.update);
 routes.get('/classes', classesController.index);
+routes.get('/classes/:class_id', classesController.show);
 
 routes.post('/connections', connectionController.store);
 routes.get('/connections', connectionController.index);
