@@ -79,15 +79,26 @@ export default class UserController {
   async show(req: MyRequest, res: Response) {
     const id = req.id;
 
-    const userExists = await db('users')
+    let userExists = await db('users')
       .where('users.id', id)
-      .join('classes', 'users.id', '=', 'classes.owner_id')
-      .select(['users.*', 'classes.*']);
+      .select(['users.*']);
 
     if (userExists.length === 0) {
       return res.status(400).json({ error: "User doesn't exists" });
     }
 
-    return res.json(userExists[0]);
+    const haveClasses = await db('classes').where('owner_id', id);
+
+    let user = userExists[0];
+    if (haveClasses.length > 0) {
+      userExists = await db('users')
+        .where('users.id', id)
+        .join('classes', 'classes.owner_id', 'users.id');
+
+      user = userExists[0];
+      user.schedule = await db('class_schedule').where('owner_id', id);
+    }
+
+    return res.json(user);
   }
 }

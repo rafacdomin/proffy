@@ -86,8 +86,8 @@ export default class ClassesController {
             owner_id: id,
             class_id: classes[0].id,
             week_day: scheduleItem.week_day,
-            from: convertHourToMinutes(scheduleItem.from),
-            to: convertHourToMinutes(scheduleItem.to),
+            from: scheduleItem.from,
+            to: scheduleItem.to,
           };
         });
 
@@ -138,8 +138,8 @@ export default class ClassesController {
           owner_id: id,
           class_id,
           week_day: scheduleItem.week_day,
-          from: convertHourToMinutes(scheduleItem.from),
-          to: convertHourToMinutes(scheduleItem.to),
+          from: scheduleItem.from,
+          to: scheduleItem.to,
         };
       });
 
