@@ -1,13 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
+import { FormHandles, SubmitHandler } from '@unform/core';
 import Input from '../../components/Input';
-
-import { useAuth } from '../../contexts/auth';
 
 import PageHeader from '../../components/PageHeader';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+
+import { UserData, useAuth } from '../../contexts/auth';
 
 import {
   ProfilePage,
@@ -20,10 +20,48 @@ import {
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
+
+interface FormData {
+  name: string;
+  lastname: string;
+  email: string;
+  bio: string;
+  whatsapp: string;
+  subject: string;
+  schedule: object;
+}
+
+const label_week_day = [
+  'Domingo',
+  'Segunda-Feira',
+  'Terça-Feira',
+  'Quarta-Feira',
+  'Quinta-Feira',
+  'Sexta-Feira',
+  'Sábado',
+];
 
 const Profile: React.FC = () => {
+  const history = useHistory();
   const { user } = useAuth();
+  const [userData, setUserData] = useState({} as UserData);
   const formRef = useRef<FormHandles>(null);
+
+  useEffect(() => {
+    async function getUserData() {
+      const response = await api.get('/users');
+
+      setUserData(response.data);
+
+      formRef.current?.setData({
+        cost: response.data?.cost,
+        subject: response.data?.subject,
+      });
+    }
+
+    getUserData();
+  }, []);
 
   useEffect(() => {
     formRef.current?.setData({
@@ -32,20 +70,28 @@ const Profile: React.FC = () => {
       email: user?.email,
       whatsapp: user?.whatsapp,
       bio: user?.bio,
-      cost: user?.cost,
-      subject: user?.subject,
     });
   }, [user]);
 
-  useEffect(() => {
-    async function loadSchedule() {
-      const response = await api.get(`/classes/${user?.id}`);
+  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+    const { bio, email, name, lastname, whatsapp } = data;
 
-      console.log(response.data);
-    }
+    await api.put('/users', {
+      name: `${name} ${lastname}`,
+      email,
+      whatsapp,
+      bio,
+    });
 
-    loadSchedule();
-  }, [user]);
+    const { subject, schedule } = data;
+
+    await api.put('/classes', {
+      subject,
+      schedule,
+    });
+
+    history.push('/');
+  };
 
   return (
     <ProfilePage>
@@ -54,17 +100,17 @@ const Profile: React.FC = () => {
       </PageHeader>
 
       <ProfileContent>
-        <Form ref={formRef} onSubmit={() => {}}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <AvatarFieldset>
             <img
               src={
-                user?.avatar ||
-                `https://avatars.dicebear.com/api/initials/${user?.name}.svg`
+                userData?.avatar ||
+                `https://avatars.dicebear.com/api/initials/${userData?.name}.svg`
               }
               alt="avatar"
             />
-            <h1>{user?.name}</h1>
-            <span>{user?.subject}</span>
+            <h1>{userData?.name}</h1>
+            <span>{userData.subject}</span>
           </AvatarFieldset>
 
           <FormFields>
@@ -94,8 +140,8 @@ const Profile: React.FC = () => {
               <div className="subjectfields">
                 <Select
                   name="subject"
+                  value={userData.subject}
                   label="Matéria"
-                  initialData={user?.subject}
                   options={[
                     { value: 'Artes', label: 'Artes' },
                     { value: 'História', label: 'História' },
@@ -119,25 +165,38 @@ const Profile: React.FC = () => {
                 Horários disponíveis
                 <button type="button">+ Novo horário</button>
               </legend>
-              <div className="schedule-item">
-                <Select
-                  name="week_day"
-                  label="Dia da semana"
-                  options={[
-                    { value: '0', label: 'Domingo' },
-                    { value: '1', label: 'Segunda-feira' },
-                    { value: '2', label: 'Terça-feira' },
-                    { value: '3', label: 'Quarta-feira' },
-                    { value: '4', label: 'Quinta-feira' },
-                    { value: '5', label: 'Sexta-feira' },
-                    { value: '6', label: 'Sábado' },
-                  ]}
-                />
-                <Input name="from" label="Das" type="time" />
-                <Input name="to" label="Até" type="time" />
+              {userData?.schedule?.map((schedule, index) => (
+                <div key={schedule.id} className="schedule-item">
+                  <Select
+                    name={`schedule[${index}].week_day`}
+                    label="Dia da semana"
+                    value={String(schedule.week_day)}
+                    options={[
+                      { value: 0, label: label_week_day[0] },
+                      { value: 1, label: label_week_day[1] },
+                      { value: 2, label: label_week_day[2] },
+                      { value: 3, label: label_week_day[3] },
+                      { value: 4, label: label_week_day[4] },
+                      { value: 5, label: label_week_day[5] },
+                      { value: 6, label: label_week_day[6] },
+                    ]}
+                  />
+                  <Input
+                    name={`schedule[${index}].from`}
+                    value={schedule.from}
+                    label="Das"
+                    type="time"
+                  />
+                  <Input
+                    value={schedule.to}
+                    name={`schedule[${index}].to`}
+                    label="Até"
+                    type="time"
+                  />
 
-                <button>Excluir horário</button>
-              </div>
+                  <button>Excluir horário</button>
+                </div>
+              ))}
             </fieldset>
 
             <FormFooter>

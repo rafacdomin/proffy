@@ -124,8 +124,8 @@ export const FormFields = styled.div`
 
       @media (min-width: 700px) {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        grid-gap: 32px;
+        grid-template-columns: 1.5fr 1fr;
+        grid-gap: 16px;
       }
 
       input {
@@ -149,7 +149,7 @@ export const FormFields = styled.div`
       @media (min-width: 700px) {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        grid-gap: 32px;
+        grid-gap: 16px;
       }
 
       input {
@@ -177,7 +177,7 @@ export const FormFields = styled.div`
       @media (min-width: 700px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 32px;
+        grid-gap: 16px;
       }
 
       input {
@@ -202,6 +202,7 @@ export const FormFields = styled.div`
       display: flex;
       flex-direction: column;
       border-bottom: 1px solid var(--color-line-in-white);
+      margin-bottom: 5.6rem;
 
       @media (min-width: 700px) {
         display: grid;

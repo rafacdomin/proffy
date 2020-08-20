@@ -6,14 +6,17 @@ import { InputBlock } from './styles';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   name: string;
+  value?: string;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
+const Input: React.FC<InputProps> = ({ label, name, value = '', ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fieldName, defaultValue = '', registerField, error } = useField(name);
+  const { fieldName, defaultValue = value, registerField, error } = useField(
+    name
+  );
 
   useEffect(() => {
     registerField({

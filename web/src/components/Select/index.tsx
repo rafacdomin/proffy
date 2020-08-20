@@ -1,52 +1,51 @@
-import React, { useRef, useEffect } from 'react';
-import { OptionTypeBase, Props as SelectProps } from 'react-select';
+import React, { SelectHTMLAttributes, useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 
 import { SelectBlock, MySelect } from './styles';
 
-interface Props extends SelectProps<OptionTypeBase> {
+interface Data {
+  value: number | string;
   label: string;
-  name: string;
-  initialData?: string;
 }
 
-const Select: React.FC<Props> = ({ label, name, initialData, ...rest }) => {
+interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
+  label: string;
+  name: string;
+  options: Array<Data>;
+  value?: string;
+}
+
+const Select: React.FC<Props> = ({ label, name, options, value, ...rest }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue = value, registerField } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: selectRef.current,
-      getValue: (ref: any) => {
-        if (rest.isMulti) {
-          if (!ref.state.value) {
-            return [];
-          }
-          return ref.state.value.map((option: OptionTypeBase) => option.value);
-        }
-        if (!ref.state.value) {
-          return '';
-        }
-        return ref.state.value.value;
-      },
+      path: 'value',
     });
-  }, [fieldName, registerField, rest.isMulti]);
+  }, [fieldName, registerField]);
 
   return (
     <SelectBlock>
       <label htmlFor={name}>{label}</label>
+
       <MySelect
-        defaultValue={
-          initialData
-            ? { label: initialData, value: initialData }
-            : defaultValue
-        }
+        id={fieldName}
         ref={selectRef}
-        classNamePrefix="react-select"
-        placeholder="Selecionar"
+        defaultValue={defaultValue}
         {...rest}
-      />
+      >
+        <option value="" disabled hidden>
+          Selecione
+        </option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </MySelect>
     </SelectBlock>
   );
 };

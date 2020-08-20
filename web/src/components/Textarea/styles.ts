@@ -5,6 +5,13 @@ export const TextAreaBlock = styled.div`
   display: flex;
   flex-direction: column;
 
+  .error {
+    color: #ab3e3e;
+    font: 400 1.2rem Poppins;
+    margin: 0 0 10px 10px;
+    font-weight: bold;
+  }
+
   &:last-child {
     margin-top: 1.4rem;
   }

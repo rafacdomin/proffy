@@ -7,7 +7,16 @@ export interface FormData {
   checkbox: Array<[]>;
 }
 
-interface UserData {
+interface ScheduleObj {
+  id: number;
+  week_day: number;
+  from: string;
+  to: string;
+  class_id: number;
+  owner_id: number;
+}
+
+export interface UserData {
   id: number;
   name: string;
   email: string;
@@ -16,6 +25,7 @@ interface UserData {
   avatar: string;
   subject: string;
   cost: number;
+  schedule?: Array<ScheduleObj>;
 }
 
 interface AuthContextData {
