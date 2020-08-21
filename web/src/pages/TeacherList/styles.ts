@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form } from '@unform/web';
+import Pagination from '@material-ui/lab/Pagination';
 
 export const ListPage = styled.div`
   display: flex;
@@ -57,4 +58,10 @@ export const List = styled.main`
   @media (min-width: 1100px) {
     margin-top: 4rem;
   }
+`;
+
+export const Pages = styled(Pagination)`
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 2.4rem;
 `;

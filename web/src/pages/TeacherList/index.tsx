@@ -7,7 +7,7 @@ import Select from '../../components/Select';
 
 import api from '../../services/api';
 
-import { ListPage, SearchTeacher, List } from './styles';
+import { ListPage, SearchTeacher, List, Pages } from './styles';
 import { SubmitHandler } from '@unform/core';
 
 interface FormData {
@@ -18,16 +18,23 @@ interface FormData {
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     async function loadClasses() {
-      const response = await api.get('classes');
+      const response = await api.get('classes', {
+        params: {
+          page,
+        },
+      });
 
-      setClasses(response.data);
+      setClasses(response.data.Teachers);
+      setCount(response.data.pages);
     }
 
     loadClasses();
-  }, []);
+  }, [page]);
 
   const searchTeachers: SubmitHandler<FormData> = async ({
     subject,
@@ -42,8 +49,13 @@ export default function TeacherList() {
       },
     });
 
-    setClasses(response.data);
+    setClasses(response.data.Teachers);
+    setCount(response.data.pages);
   };
+
+  function handlePageCounter(pageNumber: number) {
+    setPage(pageNumber);
+  }
 
   return (
     <ListPage>
@@ -89,6 +101,12 @@ export default function TeacherList() {
           <TeacherItem key={teacher.id} teacher={teacher} />
         ))}
       </List>
+      <Pages
+        count={count < 1 ? 1 : count}
+        page={page}
+        size="large"
+        onChange={(event, page) => handlePageCounter(page)}
+      />
     </ListPage>
   );
 }
