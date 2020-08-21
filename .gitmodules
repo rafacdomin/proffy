@@ -1,0 +1,3 @@
+[submodule "proffy-api"]
+	path = proffy-api
+	url = https://github.com/rafacdomin/proffy-api
