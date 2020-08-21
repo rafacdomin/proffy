@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { SubmitHandler } from '@unform/core';
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from '../../components/Input';
@@ -8,7 +9,7 @@ import Select from '../../components/Select';
 import api from '../../services/api';
 
 import { ListPage, SearchTeacher, List, Pages } from './styles';
-import { SubmitHandler } from '@unform/core';
+import emoji from '../../assets/images/icons/emoji.svg';
 
 interface FormData {
   subject: string;
@@ -30,7 +31,7 @@ export default function TeacherList() {
       });
 
       setClasses(response.data.Teachers);
-      setCount(response.data.pages);
+      setCount(response.data.count);
     }
 
     loadClasses();
@@ -59,7 +60,15 @@ export default function TeacherList() {
 
   return (
     <ListPage>
-      <PageHeader title="Estes são os proffys disponíveis.">
+      <PageHeader
+        title="Estes são os proffys disponíveis."
+        Message={() => (
+          <div className="message">
+            <img src={emoji} alt="emoji" />
+            <span>Nós temos {count} professores</span>
+          </div>
+        )}
+      >
         <SearchTeacher onSubmit={searchTeachers}>
           <Select
             name="subject"
@@ -102,7 +111,7 @@ export default function TeacherList() {
         ))}
       </List>
       <Pages
-        count={count < 1 ? 1 : count}
+        count={count < 10 ? 1 : Math.round(count / 10)}
         page={page}
         size="large"
         onChange={(event, page) => handlePageCounter(page)}

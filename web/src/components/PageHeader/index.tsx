@@ -9,11 +9,13 @@ import { Header, TopBar } from './styles';
 interface PageHeaderProps {
   title?: string;
   description?: string;
+  Message?: React.FC;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
   title,
   description,
+  Message,
   children,
 }) => {
   const location = useLocation();
@@ -54,8 +56,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
       <div className="header-content">
         <div className="content">
-          {title && <strong>{title}</strong>}
-          {description && <p>{description}</p>}
+          <div className="title">
+            {title && <strong>{title}</strong>}
+            {description && <p>{description}</p>}
+          </div>
+          {Message && <Message />}
         </div>
         {children}
       </div>

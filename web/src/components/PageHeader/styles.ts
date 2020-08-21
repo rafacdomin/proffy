@@ -69,19 +69,41 @@ export const Header = styled.div`
     }
 
     .content {
-      max-width: 400px;
-      strong {
-        font: 700 3.6rem Archivo;
-        line-height: 4.2rem;
-        color: var(--color-title-in-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        max-width: 400px;
+
+        strong {
+          font: 700 3.6rem Archivo;
+          line-height: 4.2rem;
+          color: var(--color-title-in-primary);
+        }
+
+        p {
+          max-width: 30rem;
+          font-size: 1.6rem;
+          line-height: 2.6rem;
+          color: var(--color-text-in-primary);
+          margin-top: 2.4rem;
+        }
       }
 
-      p {
-        max-width: 30rem;
-        font-size: 1.6rem;
-        line-height: 2.6rem;
-        color: var(--color-text-in-primary);
-        margin-top: 2.4rem;
+      .message {
+        display: flex;
+        align-items: center;
+
+        img {
+          margin-right: 2.4rem;
+        }
+
+        span {
+          max-width: 10rem;
+          font: 400 1.2rem Poppins;
+          color: var(--color-text-in-primary);
+        }
       }
     }
   }

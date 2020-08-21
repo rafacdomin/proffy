@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
+import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -13,7 +14,7 @@ import Select from '../../components/Select';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import { TeacherFormPage, PageContent, FormFields, FormFooter } from './styles';
-import { FormHandles, SubmitHandler } from '@unform/core';
+import rocket from '../../assets/images/icons/rocket.svg';
 
 interface ScheduleItem {
   id: number;
@@ -122,6 +123,12 @@ export default function TeacherForm() {
       <PageHeader
         title="Que incrível que você quer dar aulas"
         description="O primeiro passo é preencher esse formulário de inscrição"
+        Message={() => (
+          <div className="message">
+            <img src={rocket} alt="foguete" />
+            <span>Prepare-se vai ser o máximo</span>
+          </div>
+        )}
       />
 
       <PageContent>
