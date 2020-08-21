@@ -51,9 +51,8 @@ export default class ClassesController {
       });
 
       const Teachers = await Promise.all(newClasses);
-      const pages = Math.round(classes.length / 10);
 
-      return res.json({ Teachers, pages });
+      return res.json({ Teachers, count: classes.length });
     }
 
     const timeInMinutes = convertHourToMinutes(time);
@@ -79,9 +78,8 @@ export default class ClassesController {
     });
 
     const Teachers = await Promise.all(newClasses);
-    const pages = Math.round(classes.length / 10);
 
-    return res.json({ Teachers, pages });
+    return res.json({ Teachers, count: classes.length });
   }
 
   async update(req: MyRequest, res: Response) {
