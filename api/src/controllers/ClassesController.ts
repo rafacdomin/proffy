@@ -42,7 +42,17 @@ export default class ClassesController {
         .limit(10)
         .offset((Number(page) - 1) * 10);
 
-      return res.json(classes);
+      const newClasses = classes.map(async (classe) => {
+        classe.schedule = await db('class_schedule').where(
+          'class_id',
+          classe.id
+        );
+        return classe;
+      });
+
+      const Teachers = await Promise.all(newClasses);
+
+      return res.json(Teachers);
     }
 
     const timeInMinutes = convertHourToMinutes(time);
@@ -53,17 +63,23 @@ export default class ClassesController {
           .from('class_schedule')
           .whereRaw('`class_schedule`.`class_id`')
           .whereRaw('`class_schedule`.`week_day` = ??', [Number(week_day)])
-          .whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
-          .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes]);
+          .whereRaw('`class_schedule`.`from_minutes` <= ??', [timeInMinutes])
+          .whereRaw('`class_schedule`.`to_minutes` > ??', [timeInMinutes]);
       })
       .where('classes.subject', '=', subject)
       .join('users', 'classes.owner_id', '=', 'users.id')
-      .join('class_schedule', 'classes.id', '=', 'class_schedule.class_id')
-      .select(['classes.*', 'users.*', 'class_schedule.*'])
+      .select(['classes.*', 'users.*'])
       .limit(10)
       .offset((Number(page) - 1) * 10);
 
-    return res.json(classes);
+    const newClasses = classes.map(async (classe) => {
+      classe.schedule = await db('class_schedule').where('class_id', classe.id);
+      return classe;
+    });
+
+    const Teachers = await Promise.all(newClasses);
+
+    return res.json(Teachers);
   }
 
   async update(req: MyRequest, res: Response) {
@@ -88,6 +104,8 @@ export default class ClassesController {
             week_day: scheduleItem.week_day,
             from: scheduleItem.from,
             to: scheduleItem.to,
+            from_minutes: convertHourToMinutes(scheduleItem.from),
+            to_minutes: convertHourToMinutes(scheduleItem.to),
           };
         });
 
@@ -140,6 +158,8 @@ export default class ClassesController {
           week_day: scheduleItem.week_day,
           from: scheduleItem.from,
           to: scheduleItem.to,
+          from_minutes: convertHourToMinutes(scheduleItem.from),
+          to_minutes: convertHourToMinutes(scheduleItem.to),
         };
       });
 

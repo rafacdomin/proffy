@@ -6,7 +6,9 @@ export async function up(knex: Knex) {
 
     table.integer('week_day').notNullable();
     table.string('from').notNullable();
+    table.integer('from_minutes').notNullable();
     table.string('to').notNullable();
+    table.integer('to_minutes').notNullable();
 
     table
       .integer('class_id')
