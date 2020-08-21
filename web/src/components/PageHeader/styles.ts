@@ -16,7 +16,7 @@ export const TopBar = styled.header`
     align-items: center;
     color: var(--color-text-in-primary);
 
-    @media (min-width: 700px) {
+    @media (min-width: 1100px) {
       max-width: 1100px;
     }
 
@@ -53,7 +53,7 @@ export const Header = styled.div`
   width: 100vw;
   margin-bottom: 2.4rem;
 
-  @media (min-width: 700px) {
+  @media (min-width: 1100px) {
     margin-bottom: 0;
   }
 
@@ -61,7 +61,7 @@ export const Header = styled.div`
     position: relative;
     margin: 3.2rem 1.6rem;
 
-    @media (min-width: 700px) {
+    @media (min-width: 1100px) {
       max-width: 740px;
       width: 100%;
       margin: 0 auto;

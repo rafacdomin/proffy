@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 
@@ -53,22 +54,56 @@ export default function TeacherForm() {
   ]);
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
-    const { whatsapp, bio } = data;
+    try {
+      formRef.current?.setErrors({});
 
-    await api.put('/users', {
-      whatsapp,
-      bio,
-    });
+      const schema = Yup.object().shape({
+        whatsapp: Yup.string().required(),
+        bio: Yup.string().required(),
+        subject: Yup.string().required(),
+        cost: Yup.number().required('cost is required'),
+        schedule: Yup.array().of(
+          Yup.object().shape({
+            week_day: Yup.number(),
+            from: Yup.string(),
+            to: Yup.string(),
+          })
+        ),
+      });
 
-    const { subject, cost, schedule } = data;
+      await schema.validate(data, {
+        abortEarly: false,
+      });
 
-    await api.put('/classes', {
-      subject,
-      cost,
-      schedule,
-    });
+      console.log('validate');
+      const { whatsapp, bio } = data;
 
-    history.push('/give-classes-success');
+      await api.put('/users', {
+        whatsapp,
+        bio,
+      });
+
+      const { subject, cost, schedule } = data;
+
+      await api.put('/classes', {
+        subject,
+        cost,
+        schedule,
+      });
+
+      history.push('/give-classes-success');
+    } catch (err) {
+      const validationErrors: any = {};
+
+      if (err instanceof Yup.ValidationError) {
+        // validation fails
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+
+        formRef.current?.setErrors(validationErrors);
+      }
+    }
   };
 
   function addNewScheduleItem() {
@@ -134,7 +169,7 @@ export default function TeacherForm() {
                 </button>
               </legend>
               {scheduleItems.map((schedule, index) => (
-                <div key={schedule.id} className="schedule-item">
+                <div key={index} className="schedule-item">
                   <Select
                     name={`schedule[${index}].week_day`}
                     label="Dia da semana"

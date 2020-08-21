@@ -54,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
     outline: 0;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 1100px) {
     :root {
       font-size: 62.5%;
     }

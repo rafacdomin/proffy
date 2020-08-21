@@ -31,6 +31,7 @@ interface FormData {
   subject: string;
   schedule: object;
   cost: number;
+  avatar: string;
 }
 
 interface ScheduleItem {
@@ -80,13 +81,14 @@ const Profile: React.FC = () => {
   }, [user]);
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
-    const { bio, email, name, lastname, whatsapp } = data;
+    const { bio, avatar, email, name, lastname, whatsapp } = data;
 
     await api.put('/users', {
       name: `${name} ${lastname}`,
       email,
       whatsapp,
       bio,
+      avatar,
     });
 
     const { subject, cost, schedule } = data;
@@ -150,6 +152,12 @@ const Profile: React.FC = () => {
                 <Input name="whatsapp" label="Whatsapp" />
               </div>
 
+              <Input
+                className="avatar"
+                type="text"
+                name="avatar"
+                label="Avatar URL"
+              />
               <Textarea name="bio" label="Biografia" />
             </fieldset>
 

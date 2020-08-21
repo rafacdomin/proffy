@@ -14,7 +14,7 @@ export const SearchTeacher = styled(Form)`
   color: var(--color-text-in-primary);
   font: 400 1.4rem Poppins;
 
-  @media (min-width: 700px) {
+  @media (min-width: 1100px) {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 1fr;
     grid-gap: 1.6rem;
@@ -42,7 +42,7 @@ export const SearchTeacher = styled(Form)`
       background: var(--color-secundary-dark);
     }
 
-    @media (min-width: 700px) {
+    @media (min-width: 1100px) {
       margin-top: 1.2rem;
     }
   }
@@ -54,7 +54,7 @@ export const List = styled.main`
   margin-top: -4.6rem;
   margin-bottom: 3.2rem;
 
-  @media (min-width: 700px) {
+  @media (min-width: 1100px) {
     margin-top: 4rem;
   }
 `;

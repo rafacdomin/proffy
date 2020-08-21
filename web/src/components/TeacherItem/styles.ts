@@ -16,7 +16,7 @@ export const Item = styled.article`
     font-size: 1.6rem;
     line-height: 2.8rem;
 
-    @media (min-width: 700px) {
+    @media (min-width: 1100px) {
       padding: 0 3.2rem;
     }
   }
@@ -30,7 +30,7 @@ export const Item = styled.article`
     align-items: center;
     justify-content: space-between;
 
-    @media (min-width: 700px) {
+    @media (min-width: 1100px) {
       padding: 3.2rem;
     }
 
@@ -39,7 +39,7 @@ export const Item = styled.article`
       font-size: 1.6rem;
       display: block;
 
-      @media (min-width: 700px) {
+      @media (min-width: 1100px) {
         display: initial;
         margin-left: 1.6rem;
       }
@@ -64,13 +64,13 @@ export const Item = styled.article`
         background: var(--color-button-wpp-dark);
       }
 
-      @media (min-width: 700px) {
+      @media (min-width: 1100px) {
         width: 24.5rem;
         font-size: 1.6rem;
         justify-content: center;
       }
 
-      @media (min-width: 700px) {
+      @media (min-width: 1100px) {
         img {
           margin-right: 1.6rem;
         }
@@ -84,7 +84,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
 
-  @media (min-width: 700px) {
+  @media (min-width: 1100px) {
     padding: 3.2rem;
   }
 

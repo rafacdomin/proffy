@@ -6,6 +6,13 @@ export const InputBlock = styled.div`
   flex-direction: column;
   margin-bottom: 1.4rem;
 
+  .error {
+    color: #ab3e3e;
+    font: 400 1.2rem Poppins;
+    margin: 0 0 10px 10px;
+    font-weight: bold;
+  }
+
   &:focus-within::after {
     width: calc(100% - 3.2rem);
     height: 2px;

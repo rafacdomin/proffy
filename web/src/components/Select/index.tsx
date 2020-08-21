@@ -23,7 +23,9 @@ const Select: React.FC<Props> = ({
   ...rest
 }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue = value, registerField } = useField(name);
+  const { fieldName, defaultValue = value, registerField, error } = useField(
+    name
+  );
 
   useEffect(() => {
     registerField({
@@ -52,6 +54,7 @@ const Select: React.FC<Props> = ({
           </option>
         ))}
       </MySelect>
+      {error && <span className="error">{error}</span>}
     </SelectBlock>
   );
 };
