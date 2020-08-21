@@ -1,3 +1,6 @@
 [submodule "proffy-api"]
 	path = proffy-api
 	url = https://github.com/rafacdomin/proffy-api
+[submodule "proffy-web"]
+	path = proffy-web
+	url = https://github.com/rafacdomin/proffy-web
