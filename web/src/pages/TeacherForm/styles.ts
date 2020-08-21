@@ -20,75 +20,168 @@ export const PageContent = styled.main`
     margin-bottom: 3.2rem;
   }
 `;
-export const FormFieldset = styled.fieldset`
-  border: 0;
-  padding: 0 2.4rem;
-  padding-bottom: 6.4rem;
+export const FormFields = styled.div`
+  background: var(--color-box-base);
+  width: 100%;
+  max-width: 74rem;
+  border-radius: 0.8rem;
+  margin: 0 auto;
+  padding-top: 3.2rem;
 
-  legend {
-    font: 700 2.4rem Archivo;
-    color: var(--color-text-title);
-    margin-bottom: 2.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-bottom: 1.6rem;
-    border-bottom: 1px solid var(--color-line-in-white);
-
-    button {
-      background: none;
-      border: 0;
-      color: var(--color-primary);
-      font: 700 1.6rem Archivo;
-      cursor: pointer;
-      transition: color 0.2s;
-
-      &:hover {
-        color: var(--color-primary-dark);
-      }
-    }
+  @media (min-width: 700px) {
+    margin-bottom: 3.2rem;
   }
 
-  .schedule-item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid var(--color-line-in-white);
+  fieldset {
+    border: 0;
+    padding: 0 2.4rem;
+    padding-bottom: 6.4rem;
 
-    @media (min-width: 700px) {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      column-gap: 1.6rem;
+    legend {
+      font: 700 2.4rem Archivo;
+      color: var(--color-text-title);
+      margin-bottom: 2.4rem;
+      display: flex;
       align-items: center;
-    }
-
-    input {
+      justify-content: space-between;
       width: 100%;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid var(--color-line-in-white);
+
+      button {
+        background: none;
+        border: 0;
+        color: var(--color-primary);
+        font: 700 1.6rem Archivo;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: var(--color-primary-dark);
+        }
+      }
     }
 
-    select {
-      width: 100%;
-    }
-
-    button {
-      align-self: center;
-      margin-bottom: -1.2rem;
-      width: 14rem;
-      background: var(--color-box-base);
-      color: #ab3e3e;
-      border: 0;
-      outline: 0;
-      cursor: pointer;
+    .contactfields {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       @media (min-width: 700px) {
-        justify-self: flex-end;
-        margin-right: -80px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        grid-gap: 16px;
+      }
+
+      input {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+
+      select {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .subjectfields {
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 16px;
+      }
+
+      input {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+
+      select {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .fields {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 16px;
+      }
+
+      input {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+
+      select {
+        width: 16rem;
+
+        @media (min-width: 700px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .schedule-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--color-line-in-white);
+      margin-bottom: 5.6rem;
+
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        column-gap: 1.6rem;
+        align-items: center;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      button {
+        align-self: center;
+        margin-bottom: -1.2rem;
+        width: 14rem;
+        background: var(--color-box-base);
+        color: #ab3e3e;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+
+        @media (min-width: 700px) {
+          justify-self: flex-end;
+          margin-right: -80px;
+        }
       }
     }
   }
 `;
-
 export const FormFooter = styled.footer`
   padding: 4rem 2.4rem;
   background: var(--color-box-footer);
