@@ -19,11 +19,11 @@ export const SearchTeacher = styled(Form)`
     grid-template-columns: 2fr 2fr 2fr 1fr;
     grid-gap: 1.6rem;
     align-items: center;
-    margin-bottom: -9rem;
+    margin-bottom: -8.4rem;
   }
 
   button {
-    height: 5.6rem;
+    height: 4.2rem;
     width: 100%;
     margin-top: 2.4rem;
     display: flex;

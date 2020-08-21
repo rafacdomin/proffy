@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface DayElementProps {
+  readonly disabled: boolean;
+}
+
 export const Item = styled.article`
   background: var(--color-box-base);
   border: 1px solid var(--color-line-in-white);
@@ -103,6 +107,39 @@ export const Header = styled.header`
       font-size: 1.6rem;
       display: block;
       margin-top: 0.4rem;
+    }
+  }
+`;
+
+export const DayList = styled.div`
+  display: flex;
+  overflow-x: scroll;
+  margin: 3.2rem;
+  margin-bottom: 1.6rem;
+`;
+
+export const DayElement = styled.div<DayElementProps>`
+  min-width: 14rem;
+  max-height: 15rem;
+  margin-right: 1.6rem;
+  margin-bottom: 1.6rem;
+  padding: 1.6rem;
+  border: 1px solid var(--color-line-in-white);
+  border-radius: 0.8rem;
+  opacity: ${(props) => (props.disabled ? 0.6 : 1)};
+
+  span {
+    font: 400 1.2rem/2rem Poppins;
+    color: var(--color-text-complement);
+  }
+
+  h1 {
+    font-weight: normal;
+    font: 700 1.6rem/2.6rem Archivo;
+    color: var(--color-text-base);
+
+    &:first-of-type {
+      margin-bottom: 1.2rem;
     }
   }
 `;

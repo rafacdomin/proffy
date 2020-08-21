@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
@@ -8,12 +8,16 @@ import Select from '../../components/Select';
 import api from '../../services/api';
 
 import { ListPage, SearchTeacher, List } from './styles';
+import { SubmitHandler } from '@unform/core';
+
+interface FormData {
+  subject: string;
+  week_day: number;
+  time: string;
+}
 
 export default function TeacherList() {
   const [classes, setClasses] = useState([]);
-  const [subject, setSubject] = useState('');
-  const [week_day, setWeekDay] = useState('');
-  const [time, setTime] = useState('');
 
   useEffect(() => {
     async function loadClasses() {
@@ -25,10 +29,12 @@ export default function TeacherList() {
     loadClasses();
   }, []);
 
-  async function searchClasses(e: FormEvent) {
-    e.preventDefault();
-
-    const response = await api.get('classes', {
+  const searchTeachers: SubmitHandler<FormData> = async ({
+    subject,
+    week_day,
+    time,
+  }) => {
+    const response = await api.get('/classes', {
       params: {
         subject,
         week_day,
@@ -37,12 +43,12 @@ export default function TeacherList() {
     });
 
     setClasses(response.data);
-  }
+  };
 
   return (
     <ListPage>
       <PageHeader title="Estes são os proffys disponíveis.">
-        <SearchTeacher onSubmit={searchClasses}>
+        <SearchTeacher onSubmit={searchTeachers}>
           <Select
             name="subject"
             label="Matéria"
@@ -72,13 +78,7 @@ export default function TeacherList() {
               { value: '6', label: 'Sábado' },
             ]}
           />
-          <Input
-            type="time"
-            name="time"
-            label="Hora"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
+          <Input type="time" name="time" label="Hora" />
 
           <button type="submit">Buscar</button>
         </SearchTeacher>

@@ -15,7 +15,13 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
   value?: string;
 }
 
-const Select: React.FC<Props> = ({ label, name, options, value, ...rest }) => {
+const Select: React.FC<Props> = ({
+  label,
+  name,
+  options,
+  value = '',
+  ...rest
+}) => {
   const selectRef = useRef(null);
   const { fieldName, defaultValue = value, registerField } = useField(name);
 

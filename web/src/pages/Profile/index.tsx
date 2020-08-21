@@ -30,6 +30,14 @@ interface FormData {
   whatsapp: string;
   subject: string;
   schedule: object;
+  cost: number;
+}
+
+interface ScheduleItem {
+  id: number;
+  week_day: number;
+  from: string;
+  to: string;
 }
 
 const label_week_day = [
@@ -45,32 +53,30 @@ const label_week_day = [
 const Profile: React.FC = () => {
   const history = useHistory();
   const { user } = useAuth();
-  const [userData, setUserData] = useState({} as UserData);
   const formRef = useRef<FormHandles>(null);
+
+  const [userData, setUserData] = useState({} as UserData);
+  const [scheduleItems, setScheduleItems] = useState<Array<ScheduleItem>>([]);
 
   useEffect(() => {
     async function getUserData() {
       const response = await api.get('/users');
 
       setUserData(response.data);
+      setScheduleItems(response.data.schedule);
 
       formRef.current?.setData({
         cost: response.data?.cost,
         subject: response.data?.subject,
+        name: response.data?.name.split(' ')[0],
+        lastname: response.data?.name.split(' ')[1],
+        email: response.data?.email,
+        whatsapp: response.data?.whatsapp,
+        bio: response.data?.bio,
       });
     }
 
     getUserData();
-  }, []);
-
-  useEffect(() => {
-    formRef.current?.setData({
-      name: user?.name.split(' ')[0],
-      lastname: user?.name.split(' ')[1],
-      email: user?.email,
-      whatsapp: user?.whatsapp,
-      bio: user?.bio,
-    });
   }, [user]);
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
@@ -83,15 +89,28 @@ const Profile: React.FC = () => {
       bio,
     });
 
-    const { subject, schedule } = data;
+    const { subject, cost, schedule } = data;
 
     await api.put('/classes', {
       subject,
+      cost,
       schedule,
     });
 
+    alert('Cadastro atualizado com sucesso');
     history.push('/');
   };
+
+  function addNewScheduleItem() {
+    setScheduleItems([...scheduleItems, {} as ScheduleItem]);
+  }
+
+  function removeScheduleItem(index: number) {
+    const array = [...scheduleItems];
+    array.splice(index, 1);
+
+    setScheduleItems(array);
+  }
 
   return (
     <ProfilePage>
@@ -163,9 +182,11 @@ const Profile: React.FC = () => {
             <fieldset>
               <legend>
                 Horários disponíveis
-                <button type="button">+ Novo horário</button>
+                <button type="button" onClick={addNewScheduleItem}>
+                  + Novo horário
+                </button>
               </legend>
-              {userData?.schedule?.map((schedule, index) => (
+              {scheduleItems.map((schedule, index) => (
                 <div key={schedule.id} className="schedule-item">
                   <Select
                     name={`schedule[${index}].week_day`}
@@ -194,7 +215,12 @@ const Profile: React.FC = () => {
                     type="time"
                   />
 
-                  <button>Excluir horário</button>
+                  <button
+                    onClick={() => removeScheduleItem(index)}
+                    type="button"
+                  >
+                    Excluir horário
+                  </button>
                 </div>
               ))}
             </fieldset>
@@ -205,7 +231,7 @@ const Profile: React.FC = () => {
                 Importante! <br />
                 Preencha todos os dados corretamente
               </p>
-              <button type="submit">Salvar cadastro</button>
+              <button type="submit">Salvar alterações</button>
             </FormFooter>
           </FormFields>
         </Form>
