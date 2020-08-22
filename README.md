@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/553c749d-5122-4b43-a8a8-c8e6a84310e5/deploy-status)](https://app.netlify.com/sites/myproffy/deploys)
+     <a href="https://app.netlify.com/sites/myproffy/deploys" target="_blank"><img src="https://api.netlify.com/api/v1/badges/553c749d-5122-4b43-a8a8-c8e6a84310e5/deploy-status" alt="Run in Netlify"></a>
 </p>
 
 ## About
