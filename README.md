@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://insomnia.rest/run/?label=Proffy&uri=https%3A%2F%2Fgithub.com%2Frafacdomin%2Fproffy%2Fblob%2Fmaster%2Fapi%2FInsomnia_proffy.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/553c749d-5122-4b43-a8a8-c8e6a84310e5/deploy-status)](https://app.netlify.com/sites/myproffy/deploys)
 </p>
 
 ## About
@@ -44,7 +44,10 @@ This project was developed with the following technologies:
   - [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
   - [Express](https://expressjs.com/)
   - [KnexJS](http://knexjs.org/)
-  - [SQLite 3](https://www.npmjs.com/package/sqlite3)
+  - [PostgreSQL](https://www.npmjs.com/package/sqlite3)
+  - [Cors](https://www.npmjs.com/package/cors)
+  - [bcrypt](https://www.npmjs.com/package/bcrypt)
+  - [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
 
 - Web:
 
@@ -52,6 +55,9 @@ This project was developed with the following technologies:
   - [Typescript](https://www.typescriptlang.org/)
   - [React Router v5](https://github.com/ReactTraining/react-router)
   - [Axios](https://github.com/axios/axios)
+  - [styled-components](https://styled-components.com/)
+  - [Yup](https://www.npmjs.com/package/yup)
+  - [Unform](https://unform.dev/)
 
 - Mobile:
 
