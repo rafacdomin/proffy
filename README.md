@@ -116,7 +116,7 @@ $ git clone https://github.com/rafacdomin/proffy-web
 $ cd proffy-web
 ```
 
-Change the `baseURL` in `src/services/api.ts` to http:localhost:3333 or to where your server is running.
+Change the `baseURL` in `src/services/api.ts` to http://localhost:3333 or to where your server is running.
 
 ```bash
 # Install dependencies
